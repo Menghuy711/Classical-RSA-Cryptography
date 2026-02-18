@@ -322,7 +322,7 @@ function ConverterTabs() {
   const [shiftValue, setShiftValue] = useState("3");
   const [shiftEncrypted, setShiftEncrypted] = useState("");
   const [shiftDecrypted, setShiftDecrypted] = useState("");
-  const [shiftMapping, setShiftMapping] = useState("");
+  const [shiftBruteForce, setShiftBruteForce] = useState("");
 
   // Affine Cipher State
   const [affinePlaintext, setAffinePlaintext] = useState("");
@@ -330,6 +330,7 @@ function ConverterTabs() {
   const [affineB, setAffineB] = useState("8");
   const [affineEncrypted, setAffineEncrypted] = useState("");
   const [affineDecrypted, setAffineDecrypted] = useState("");
+  const [affineBruteForce, setAffineBruteForce] = useState("");
 
   // Transposition Cipher State
   const [transPlaintext, setTransPlaintext] = useState("");
@@ -368,7 +369,6 @@ function ConverterTabs() {
       const shift = parseInt(shiftValue);
       const result = shiftEncrypt(shiftPlaintext, shift);
       setShiftEncrypted(result);
-      setShiftMapping(getShiftMapping(shift));
     } catch (error) {
       setShiftEncrypted("Error: " + (error as Error).message);
     }
@@ -381,6 +381,19 @@ function ConverterTabs() {
       setShiftDecrypted(result);
     } catch (error) {
       setShiftDecrypted("Error: " + (error as Error).message);
+    }
+  };
+
+  const handleShiftBruteForce = () => {
+    try {
+      const results: string[] = [];
+      for (let shift = 0; shift < 26; shift++) {
+        const decrypted = shiftDecrypt(shiftPlaintext, shift);
+        results.push(`Shift ${shift}: ${decrypted}`);
+      }
+      setShiftBruteForce(results.join(" | "));
+    } catch (error) {
+      setShiftBruteForce("Error: " + (error as Error).message);
     }
   };
 
@@ -404,6 +417,27 @@ function ConverterTabs() {
       setAffineDecrypted(result);
     } catch (error) {
       setAffineDecrypted("Error: " + (error as Error).message);
+    }
+  };
+
+  const handleAffineBruteForce = () => {
+    try {
+      const results: string[] = [];
+      const validA = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25]; // Values coprime with 26
+      
+      for (const a of validA) {
+        for (let b = 0; b < 26; b++) {
+          try {
+            const decrypted = affineDecrypt(affinePlaintext, a, b);
+            results.push(`a=${a}, b=${b}: ${decrypted}`);
+          } catch (e) {
+            // Skip invalid combinations
+          }
+        }
+      }
+      setAffineBruteForce(results.join(" | "));
+    } catch (error) {
+      setAffineBruteForce("Error: " + (error as Error).message);
     }
   };
 
@@ -453,12 +487,12 @@ function ConverterTabs() {
     <Card className="bg-zinc-900 border-zinc-800 max-w-4xl mx-auto">
       <CardContent className="p-6">
         <Tabs defaultValue="caesar" className="w-full">
-          <TabsList className="grid grid-cols-5 w-full bg-zinc-800 mb-6">
-            <TabsTrigger value="caesar" className="font-mono data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950">Caesar</TabsTrigger>
-            <TabsTrigger value="shift" className="font-mono data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950">Shift</TabsTrigger>
-            <TabsTrigger value="affine" className="font-mono data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950">Affine</TabsTrigger>
-            <TabsTrigger value="trans" className="font-mono data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950">Transposition</TabsTrigger>
-            <TabsTrigger value="rsa" className="font-mono data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950">RSA</TabsTrigger>
+          <TabsList className="grid grid-cols-5 w-full bg-zinc-800 mb-6 overflow-x-auto">
+            <TabsTrigger value="caesar" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">Caesar Cipher</TabsTrigger>
+            <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">General Shift</TabsTrigger>
+            <TabsTrigger value="affine" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">Affine Cipher</TabsTrigger>
+            <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">Transposition</TabsTrigger>
+            <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">RSA Cryptography</TabsTrigger>
           </TabsList>
 
           {/* Caesar Tab */}
@@ -532,14 +566,6 @@ function ConverterTabs() {
                 Decrypt
               </Button>
             </div>
-            {shiftMapping && (
-              <div>
-                <Label className="font-mono text-green-500">Alphabet Mapping</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 whitespace-pre">
-                  {shiftMapping}
-                </div>
-              </div>
-            )}
             {shiftEncrypted && (
               <div>
                 <Label className="font-mono text-green-500">Encrypted Text</Label>
@@ -553,6 +579,19 @@ function ConverterTabs() {
                 <Label className="font-mono text-green-500">Decrypted Text</Label>
                 <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
                   {shiftDecrypted}
+                </div>
+              </div>
+            )}
+            <div className="border-t border-zinc-700 pt-4 mt-4">
+              <Button onClick={handleShiftBruteForce} className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-mono">
+                Run Brute Force Attack
+              </Button>
+            </div>
+            {shiftBruteForce && (
+              <div>
+                <Label className="font-mono text-green-500">Brute Force Results</Label>
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs">
+                  {shiftBruteForce}
                 </div>
               </div>
             )}
@@ -613,6 +652,19 @@ function ConverterTabs() {
                 <Label className="font-mono text-green-500">Decrypted Text</Label>
                 <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
                   {affineDecrypted}
+                </div>
+              </div>
+            )}
+            <div className="border-t border-zinc-700 pt-4 mt-4">
+              <Button onClick={handleAffineBruteForce} className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-mono">
+                Run Brute Force Attack
+              </Button>
+            </div>
+            {affineBruteForce && (
+              <div>
+                <Label className="font-mono text-green-500">Brute Force Results</Label>
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs">
+                  {affineBruteForce}
                 </div>
               </div>
             )}
