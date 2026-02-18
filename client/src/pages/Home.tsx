@@ -27,6 +27,7 @@ import {
   transpositionEncrypt,
   transpositionDecrypt,
   rsaGenerateKeys,
+  rsaGenerateKeysWithPrimes,
   rsaEncrypt,
   rsaDecrypt,
 } from "@/lib/crypto";
@@ -343,6 +344,21 @@ function ConverterTabs() {
   const [rsaKeys, setRsaKeys] = useState(rsaGenerateKeys());
   const [rsaEncrypted, setRsaEncrypted] = useState("");
   const [rsaDecrypted, setRsaDecrypted] = useState("");
+  const [rsaP, setRsaP] = useState("61");
+  const [rsaQ, setRsaQ] = useState("53");
+  const [rsaKeyGenError, setRsaKeyGenError] = useState("");
+  const [rsaE, setRsaE] = useState("");
+  const [rsaN, setRsaN] = useState("");
+  const [rsaD, setRsaD] = useState("");
+  const [rsaPhi, setRsaPhi] = useState("");
+  const [rsaEncryptE, setRsaEncryptE] = useState("");
+  const [rsaEncryptN, setRsaEncryptN] = useState("");
+  const [rsaEncryptMessage, setRsaEncryptMessage] = useState("");
+  const [rsaEncryptResult, setRsaEncryptResult] = useState("");
+  const [rsaDecryptD, setRsaDecryptD] = useState("");
+  const [rsaDecryptN, setRsaDecryptN] = useState("");
+  const [rsaDecryptCiphertext, setRsaDecryptCiphertext] = useState("");
+  const [rsaDecryptResult, setRsaDecryptResult] = useState("");
 
   // Caesar handlers
   const handleCaesarEncrypt = () => {
@@ -391,7 +407,11 @@ function ConverterTabs() {
         const decrypted = shiftDecrypt(shiftPlaintext, shift);
         results.push(`Shift ${shift}: ${decrypted}`);
       }
-      setShiftBruteForce(results.join(" | "));
+      const formattedResults = [];
+      for (let i = 0; i < results.length; i += 4) {
+        formattedResults.push(results.slice(i, i + 4).join(" | "));
+      }
+      setShiftBruteForce(formattedResults.join("\n"));
     } catch (error) {
       setShiftBruteForce("Error: " + (error as Error).message);
     }
@@ -423,7 +443,7 @@ function ConverterTabs() {
   const handleAffineBruteForce = () => {
     try {
       const results: string[] = [];
-      const validA = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25]; // Values coprime with 26
+      const validA = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
       
       for (const a of validA) {
         for (let b = 0; b < 26; b++) {
@@ -435,7 +455,11 @@ function ConverterTabs() {
           }
         }
       }
-      setAffineBruteForce(results.join(" | "));
+      const formattedResults = [];
+      for (let i = 0; i < results.length; i += 3) {
+        formattedResults.push(results.slice(i, i + 3).join(" | "));
+      }
+      setAffineBruteForce(formattedResults.join("\n"));
     } catch (error) {
       setAffineBruteForce("Error: " + (error as Error).message);
     }
@@ -463,6 +487,67 @@ function ConverterTabs() {
   // RSA handlers
   const handleRsaGenerateKeys = () => {
     setRsaKeys(rsaGenerateKeys());
+  };
+
+  const handleRsaGenerateKeysWithPrimes = () => {
+    try {
+      setRsaKeyGenError("");
+      const p = parseInt(rsaP);
+      const q = parseInt(rsaQ);
+      
+      if (isNaN(p) || isNaN(q)) {
+        setRsaKeyGenError("Please enter valid numbers for p and q");
+        return;
+      }
+      
+      const result = rsaGenerateKeysWithPrimes(p, q);
+      
+      if ('error' in result) {
+        setRsaKeyGenError(result.error);
+        setRsaE("");
+        setRsaN("");
+        setRsaD("");
+        setRsaPhi("");
+      } else {
+        setRsaKeyGenError("");
+        setRsaE(result.publicKey.e);
+        setRsaN(result.publicKey.n);
+        setRsaD(result.privateKey.d);
+        setRsaPhi(result.phi);
+        setRsaEncryptE(result.publicKey.e);
+        setRsaEncryptN(result.publicKey.n);
+        setRsaDecryptD(result.privateKey.d);
+        setRsaDecryptN(result.publicKey.n);
+      }
+    } catch (error) {
+      setRsaKeyGenError("Error: " + (error as Error).message);
+    }
+  };
+
+  const handleRsaEncryptDemo = () => {
+    try {
+      if (!rsaEncryptE || !rsaEncryptN || !rsaEncryptMessage) {
+        setRsaEncryptResult("Please fill in all fields");
+        return;
+      }
+      const result = rsaEncrypt(rsaEncryptMessage, rsaEncryptE, rsaEncryptN);
+      setRsaEncryptResult(result);
+    } catch (error) {
+      setRsaEncryptResult("Error: " + (error as Error).message);
+    }
+  };
+
+  const handleRsaDecryptDemo = () => {
+    try {
+      if (!rsaDecryptD || !rsaDecryptN || !rsaDecryptCiphertext) {
+        setRsaDecryptResult("Please fill in all fields");
+        return;
+      }
+      const result = rsaDecrypt(rsaDecryptCiphertext, rsaDecryptD, rsaDecryptN);
+      setRsaDecryptResult(result);
+    } catch (error) {
+      setRsaDecryptResult("Error: " + (error as Error).message);
+    }
   };
 
   const handleRsaEncrypt = () => {
@@ -720,50 +805,149 @@ function ConverterTabs() {
           </TabsContent>
 
           {/* RSA Tab */}
-          <TabsContent value="rsa" className="space-y-4">
-            <div className="text-center mb-4">
-              <p className="text-green-500 font-mono text-sm">C = M^e mod n | M = C^d mod n</p>
-            </div>
-            <div className="bg-zinc-800 border border-zinc-700 p-4 space-y-2">
-              <p className="font-mono text-green-500 text-sm">Public Key: (e={rsaKeys.publicKey.e}, n={rsaKeys.publicKey.n})</p>
-              <p className="font-mono text-green-500 text-sm">Private Key: (d={rsaKeys.privateKey.d}, n={rsaKeys.privateKey.n})</p>
-              <Button onClick={handleRsaGenerateKeys} variant="outline" size="sm" className="font-mono border-green-500 text-green-500 hover:bg-green-500 hover:text-zinc-950">
-                Generate New Keys
+          <TabsContent value="rsa" className="space-y-6">
+            {/* Section 1: RSA Key Generation */}
+            <div className="border border-zinc-700 rounded-lg p-4 bg-zinc-800/50">
+              <h3 className="text-lg font-mono text-green-500 mb-4 font-bold">RSA Key Generation Demo</h3>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                  <Label className="font-mono text-green-500">First Prime (p)</Label>
+                  <Input 
+                    type="number"
+                    value={rsaP}
+                    onChange={(e) => setRsaP(e.target.value)}
+                    className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                    placeholder="e.g., 61"
+                  />
+                </div>
+                <div>
+                  <Label className="font-mono text-green-500">Second Prime (q)</Label>
+                  <Input 
+                    type="number"
+                    value={rsaQ}
+                    onChange={(e) => setRsaQ(e.target.value)}
+                    className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                    placeholder="e.g., 53"
+                  />
+                </div>
+              </div>
+              <Button onClick={handleRsaGenerateKeysWithPrimes} className="w-full bg-green-500 hover:bg-green-600 text-zinc-950 font-mono mb-4">
+                Generate Key
               </Button>
+              {rsaKeyGenError && (
+                <div className="bg-red-900/30 border border-red-700 p-3 rounded mb-4">
+                  <p className="font-mono text-red-400 text-sm">{rsaKeyGenError}</p>
+                </div>
+              )}
+              {rsaE && rsaN && rsaD && (
+                <div className="bg-zinc-700/50 p-4 rounded space-y-2">
+                  <p className="font-mono text-green-400 text-sm">n = p × q = {rsaN}</p>
+                  <p className="font-mono text-green-400 text-sm">φ(n) = (p-1)(q-1) = {rsaPhi}</p>
+                  <p className="font-mono text-green-400 text-sm">Public Key (e, n): ({rsaE}, {rsaN})</p>
+                  <p className="font-mono text-green-400 text-sm">Private Key (d, n): ({rsaD}, {rsaN})</p>
+                </div>
+              )}
             </div>
-            <div>
-              <Label className="font-mono text-green-500">Plaintext</Label>
-              <Textarea 
-                value={rsaPlaintext}
-                onChange={(e) => setRsaPlaintext(e.target.value)}
-                className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                placeholder="Enter text to encrypt/decrypt..."
-              />
-            </div>
-            <div className="flex gap-4">
-              <Button onClick={handleRsaEncrypt} className="flex-1 bg-green-500 hover:bg-green-600 text-zinc-950 font-mono">
+
+            {/* Section 2: RSA Encryption */}
+            <div className="border border-zinc-700 rounded-lg p-4 bg-zinc-800/50">
+              <h3 className="text-lg font-mono text-green-500 mb-4 font-bold">RSA Encryption Demo</h3>
+              <div className="text-center mb-4">
+                <p className="text-green-500 font-mono text-sm">C = M^e mod n</p>
+              </div>
+              <div className="space-y-3 mb-4">
+                <div>
+                  <Label className="font-mono text-green-500">Plaintext Message</Label>
+                  <Input 
+                    value={rsaEncryptMessage}
+                    onChange={(e) => setRsaEncryptMessage(e.target.value)}
+                    className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                    placeholder="Enter message to encrypt"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="font-mono text-green-500">Public Exponent (e)</Label>
+                    <Input 
+                      value={rsaEncryptE}
+                      onChange={(e) => setRsaEncryptE(e.target.value)}
+                      className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                      placeholder="e"
+                    />
+                  </div>
+                  <div>
+                    <Label className="font-mono text-green-500">Modulus (n)</Label>
+                    <Input 
+                      value={rsaEncryptN}
+                      onChange={(e) => setRsaEncryptN(e.target.value)}
+                      className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                      placeholder="n"
+                    />
+                  </div>
+                </div>
+              </div>
+              <Button onClick={handleRsaEncryptDemo} className="w-full bg-green-500 hover:bg-green-600 text-zinc-950 font-mono mb-4">
                 Encrypt
               </Button>
-              <Button onClick={handleRsaDecrypt} className="flex-1 bg-green-500 hover:bg-green-600 text-zinc-950 font-mono">
+              {rsaEncryptResult && (
+                <div>
+                  <Label className="font-mono text-green-500">Encrypted Ciphertext</Label>
+                  <div className="bg-zinc-800 border border-zinc-700 p-3 mt-2 font-mono text-green-500 break-all text-xs max-h-24 overflow-y-auto">
+                    {rsaEncryptResult}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Section 3: RSA Decryption */}
+            <div className="border border-zinc-700 rounded-lg p-4 bg-zinc-800/50">
+              <h3 className="text-lg font-mono text-green-500 mb-4 font-bold">RSA Decryption Demo</h3>
+              <div className="text-center mb-4">
+                <p className="text-green-500 font-mono text-sm">M = C^d mod n</p>
+              </div>
+              <div className="space-y-3 mb-4">
+                <div>
+                  <Label className="font-mono text-green-500">Ciphertext</Label>
+                  <Textarea 
+                    value={rsaDecryptCiphertext}
+                    onChange={(e) => setRsaDecryptCiphertext(e.target.value)}
+                    className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                    placeholder="Enter ciphertext to decrypt"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="font-mono text-green-500">Private Exponent (d)</Label>
+                    <Input 
+                      value={rsaDecryptD}
+                      onChange={(e) => setRsaDecryptD(e.target.value)}
+                      className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                      placeholder="d"
+                    />
+                  </div>
+                  <div>
+                    <Label className="font-mono text-green-500">Modulus (n)</Label>
+                    <Input 
+                      value={rsaDecryptN}
+                      onChange={(e) => setRsaDecryptN(e.target.value)}
+                      className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                      placeholder="n"
+                    />
+                  </div>
+                </div>
+              </div>
+              <Button onClick={handleRsaDecryptDemo} className="w-full bg-green-500 hover:bg-green-600 text-zinc-950 font-mono mb-4">
                 Decrypt
               </Button>
+              {rsaDecryptResult && (
+                <div>
+                  <Label className="font-mono text-green-500">Decrypted Message</Label>
+                  <div className="bg-zinc-800 border border-zinc-700 p-3 mt-2 font-mono text-green-500 break-all">
+                    {rsaDecryptResult}
+                  </div>
+                </div>
+              )}
             </div>
-            {rsaEncrypted && (
-              <div>
-                <Label className="font-mono text-green-500">Encrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all text-xs">
-                  {rsaEncrypted}
-                </div>
-              </div>
-            )}
-            {rsaDecrypted && (
-              <div>
-                <Label className="font-mono text-green-500">Decrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
-                  {rsaDecrypted}
-                </div>
-              </div>
-            )}
           </TabsContent>
         </Tabs>
       </CardContent>

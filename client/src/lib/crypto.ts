@@ -163,6 +163,71 @@ function getKeyOrder(key: string): number[] {
 }
 
 // RSA Cipher
+export function isPrime(num: number): boolean {
+  if (num <= 1) return false;
+  if (num <= 3) return true;
+  if (num % 2 === 0 || num % 3 === 0) return false;
+  for (let i = 5; i * i <= num; i += 6) {
+    if (num % i === 0 || num % (i + 2) === 0) return false;
+  }
+  return true;
+}
+
+export function gcdBig(a: BigNumber, b: BigNumber): BigNumber {
+  while (!b.isEqualTo(0)) {
+    const temp = b;
+    b = a.mod(b);
+    a = temp;
+  }
+  return a;
+}
+
+export function rsaGenerateKeysWithPrimes(p: number, q: number): { publicKey: { e: string; n: string }; privateKey: { d: string; n: string }; phi: string } | { error: string } {
+  // Validate primes
+  if (!isPrime(p) || !isPrime(q)) {
+    return { error: 'Both p and q must be prime numbers' };
+  }
+  
+  if (p === q) {
+    return { error: 'p and q must be different prime numbers' };
+  }
+  
+  const pBig = new BigNumber(p);
+  const qBig = new BigNumber(q);
+  const n = pBig.multipliedBy(qBig);
+  const phi = pBig.minus(1).multipliedBy(qBig.minus(1));
+  
+  // Choose public exponent e (commonly 17 or 65537)
+  let e = new BigNumber(17);
+  if (gcdBig(e, phi).isEqualTo(1)) {
+    // Use 17 if it's coprime with phi
+  } else {
+    // Try other small primes
+    const candidates = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+    let found = false;
+    for (const candidate of candidates) {
+      const eBig = new BigNumber(candidate);
+      if (gcdBig(eBig, phi).isEqualTo(1)) {
+        e = eBig;
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      return { error: 'Could not find suitable public exponent' };
+    }
+  }
+  
+  // Calculate private exponent
+  const d = modInverseBig(e, phi);
+  
+  return {
+    publicKey: { e: e.toString(), n: n.toString() },
+    privateKey: { d: d.toString(), n: n.toString() },
+    phi: phi.toString()
+  };
+}
+
 export function rsaGenerateKeys(): { publicKey: { e: string; n: string }; privateKey: { d: string; n: string } } {
   // Use small primes for demonstration
   const p = new BigNumber(61);
