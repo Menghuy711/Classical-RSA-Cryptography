@@ -151,7 +151,7 @@ export default function Home() {
                 <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
                   <CardHeader className="text-center">
                     <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
-                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/HXWFwDiINOrRetRN.JPG" alt="Heang Sokun" className="w-full h-full object-cover" />
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/HXWFwDiINOrRetRN.JPG" alt="Heang Sokun" className="w-full h-full object-cover" style={{height: '160px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Heang Sokun</CardTitle>
                     <CardDescription className="text-zinc-400 font-mono">Web Designer</CardDescription>
@@ -164,7 +164,7 @@ export default function Home() {
                 <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
                   <CardHeader className="text-center">
                     <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
-                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/abGDOqpqQosYXyRw.jpg" alt="Hen Sopheap" className="w-full h-full object-cover" />
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/abGDOqpqQosYXyRw.jpg" alt="Hen Sopheap" className="w-full h-full object-cover" style={{height: '160px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Hen Sopheap</CardTitle>
                     <CardDescription className="text-zinc-400 font-mono">Slide Designer & Tester</CardDescription>
@@ -177,7 +177,7 @@ export default function Home() {
                 <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
                   <CardHeader className="text-center">
                     <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
-                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/eplUvtPQIsyZUmdg.JPG" alt="Heng Liden" className="w-full h-full object-cover" />
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/eplUvtPQIsyZUmdg.JPG" alt="Heng Liden" className="w-full h-full object-cover" style={{height: '155px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Heng Liden</CardTitle>
                     <CardDescription className="text-zinc-400 font-mono">Presenter</CardDescription>
@@ -190,7 +190,7 @@ export default function Home() {
                 <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
                   <CardHeader className="text-center">
                     <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
-                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/iKnBcXPfLDsxCYOt.JPG" alt="Lor Menghuy" className="w-full h-full object-cover" />
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/iKnBcXPfLDsxCYOt.JPG" alt="Lor Menghuy" className="w-full h-full object-cover" style={{height: '140px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Lor Menghuy</CardTitle>
                     <CardDescription className="text-zinc-400 font-mono">Web Designer</CardDescription>
@@ -203,7 +203,7 @@ export default function Home() {
                 <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
                   <CardHeader className="text-center">
                     <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
-                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/zmUNWVEWiIOhlhFK.JPG" alt="Loy Lyza" className="w-full h-full object-cover" />
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/zmUNWVEWiIOhlhFK.JPG" alt="Loy Lyza" className="w-full h-full object-cover" style={{height: '150px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Loy Lyza</CardTitle>
                     <CardDescription className="text-zinc-400 font-mono">Researcher & Tester</CardDescription>
@@ -304,7 +304,7 @@ export default function Home() {
                 <Card className="bg-zinc-900 border-zinc-800 text-center h-full">
                   <CardHeader>
                     <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
-                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/wKCjXbtZgVpUHhBR.png" alt="Mr.LIM Seyha" className="w-full h-full object-cover" />
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/wKCjXbtZgVpUHhBR.png" alt="Mr.LIM Seyha" className="w-full h-full object-cover" style={{paddingTop: 'px', paddingRight: 'px', paddingBottom: 'px', paddingLeft: 'px', marginTop: 'px', marginRight: 'px', marginBottom: 'px', marginLeft: 'px', height: '160px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono mb-2">Mr.LIM Seyha</CardTitle>
                     <CardDescription className="text-zinc-400 font-mono">Mathematic Lecturer</CardDescription>
@@ -325,21 +325,18 @@ export default function Home() {
                 </Card>
               </motion.div>
               
-              {[
-                { icon: Users, title: "Our teams", desc: "Thank you for exploring our website" },
-              ].map((item, idx) => (
-                <motion.div key={idx} variants={fadeInUp}>
-                  <Card className="bg-zinc-900 border-zinc-800 text-center h-full">
-                    <CardHeader>
-                      <div className="w-16 h-16 mx-auto mb-4 bg-green-500/10 flex items-center justify-center border border-green-500">
-                        <item.icon className="text-green-500" size={32} />
-                      </div>
-                      <CardTitle className="text-green-500 font-mono mb-2">{item.title}</CardTitle>
-                      <CardDescription className="text-zinc-400 font-mono">{item.desc}</CardDescription>
-                    </CardHeader>
-                  </Card>
-                </motion.div>
-              ))}
+              {/* Our Teams Card with Group Photo - Top Layer */}
+              <motion.div variants={fadeInUp} className="relative z-10">
+                <Card className="bg-zinc-900 border-zinc-800 text-center h-full">
+                  <CardHeader>
+                    <div className="w-full h-48 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/mYMfnfyRdDCCECaF.png" alt="Our Teams" className="w-full h-full object-cover" />
+                    </div>
+                    <CardTitle className="text-green-500 font-mono mb-2">Our teams</CardTitle>
+                    <CardDescription className="text-zinc-400 font-mono">Thank you for exploring our website</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -365,7 +362,7 @@ export default function Home() {
             </div>
             
             <div className="flex gap-4">
-              <a href="https://link.payway.com.kh/PN417752H" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+              <a href="https://link.payway.com.kh/ABAPAYnF417765k" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/bbdKraAUYPhlQuTr.png" alt="ABA Bank" className="w-10 h-10 object-contain" />
               </a>
               <Button variant="ghost" size="icon" className="text-green-500 hover:text-green-400">
