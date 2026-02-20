@@ -254,8 +254,8 @@ export default function Home() {
             </motion.h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-12">
-              {/* Mr. LIM Seyha Card with Photo */}
-              <motion.div variants={fadeInUp}>
+              {/* Mr. LIM Seyha Card with Photo - Top Layer */}
+              <motion.div variants={fadeInUp} className="relative z-10">
                 <Card className="bg-zinc-900 border-zinc-800 text-center h-full">
                   <CardHeader>
                     <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
@@ -267,8 +267,20 @@ export default function Home() {
                 </Card>
               </motion.div>
               
+              {/* Mr. UNG Sereysopea Card with Photo */}
+              <motion.div variants={fadeInUp}>
+                <Card className="bg-zinc-900 border-zinc-800 text-center h-full">
+                  <CardHeader>
+                    <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/iUMYhzArdzJEztcA.png" alt="Mr.UNG Sereysopea" className="w-full h-full object-cover" />
+                    </div>
+                    <CardTitle className="text-green-500 font-mono mb-2">Mr.UNG Sereysopea</CardTitle>
+                    <CardDescription className="text-zinc-400 font-mono">Information Technology Engineering Student</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+              
               {[
-                { icon: Zap, title: "Mr.UNG Sereysopea", desc: "Information Technology Engineering Student" },
                 { icon: Users, title: "Our teams", desc: "Thank you for exploring our website" },
               ].map((item, idx) => (
                 <motion.div key={idx} variants={fadeInUp}>
