@@ -78,7 +78,7 @@ export default function Home() {
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 flex items-center justify-center font-mono font-bold text-zinc-950">
               MP
             </div>
-            <span className="text-xl font-mono font-bold text-green-500">MathProject</span>
+            <span className="text-xl font-mono font-bold text-green-500">Cryptography</span>
           </div>
           <div className="hidden md:flex gap-6 font-mono text-sm">
             <button onClick={() => scrollToSection("topics")} className="hover:text-green-400 transition-colors">Topics</button>
@@ -94,7 +94,7 @@ export default function Home() {
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div {...fadeInUp}>
             <Badge variant="outline" className="mb-6 border-green-500 text-green-500 font-mono">
-              11000001...
+              Royal University of Phnom Penh
             </Badge>
           </motion.div>
           
@@ -113,7 +113,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Math Group project
+            scroll down
           </motion.p>
 
           <motion.div
@@ -181,7 +181,7 @@ export default function Home() {
               CRYPTOGRAPHY <span className="text-green-500">TOPICS</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-center text-zinc-400 font-mono mb-12">
-              Explore classical and modern encryption methods
+              Explore classical and modern encryption &   decryption methods
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -282,7 +282,7 @@ export default function Home() {
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 flex items-center justify-center font-mono font-bold text-zinc-950">
                 MP
               </div>
-              <span className="text-xl font-mono font-bold text-green-500">MathProject</span>
+              <span className="text-xl font-mono font-bold text-green-500">Cryptography</span>
             </div>
             
             <div className="flex gap-6 font-mono text-sm text-zinc-400">
