@@ -76,7 +76,10 @@ export default function Home() {
         <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
-            <span className="text-xl font-mono font-bold text-green-500">Cryptography</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-mono font-bold text-green-500">សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>
+              <span className="text-xs font-mono text-green-400">ROYAL UNIVERSITY OF PHNOM PENH</span>
+            </div>
           </div>
           <div className="hidden md:flex gap-6 font-mono text-sm">
             <button onClick={() => scrollToSection("topics")} className="hover:text-green-400 transition-colors">Topics</button>
@@ -279,7 +282,10 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
               <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
-              <span className="text-xl font-mono font-bold text-green-500">Cryptography</span>
+              <div className="flex flex-col">
+                <span className="text-xl font-mono font-bold text-green-500">សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>
+                <span className="text-xs font-mono text-green-400">ROYAL UNIVERSITY OF PHNOM PENH</span>
+              </div>
             </div>
             
             <div className="flex gap-6 font-mono text-sm text-zinc-400">
