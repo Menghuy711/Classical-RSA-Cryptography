@@ -253,9 +253,9 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-12">
               {[
-                { icon: BookOpen, title: "Mr. LIM Seyha", desc: "Mathematic Lecturer" },
+                { icon: BookOpen, title: "Mr.LIM Seyha", desc: "Mathematic Lecturer" },
                 { icon: Zap, title: "Mr.UNG Sereysopea", desc: "Information Technology Engineering Student" },
-                { icon: Users, title: "Our teams", desc: "Thank you for exploring our website." },
+                { icon: Users, title: "Our teams", desc: "Thank you for exploring our website" },
               ].map((item, idx) => (
                 <motion.div key={idx} variants={fadeInUp}>
                   <Card className="bg-zinc-900 border-zinc-800 text-center h-full">
