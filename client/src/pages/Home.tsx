@@ -296,9 +296,9 @@ export default function Home() {
             </div>
             
             <div className="flex gap-4">
-              <Button variant="ghost" size="icon" className="text-green-500 hover:text-green-400">
-                <Twitter size={20} />
-              </Button>
+              <a href="https://link.payway.com.kh/PN417752H" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/bbdKraAUYPhlQuTr.png" alt="ABA Bank" className="w-10 h-10 object-contain" />
+              </a>
               <Button variant="ghost" size="icon" className="text-green-500 hover:text-green-400">
                 <Github size={20} />
               </Button>
