@@ -185,8 +185,20 @@ export default function Home() {
                 </Card>
               </motion.div>
               
+              {/* Lor Menghuy Card with Photo - Top Layer */}
+              <motion.div variants={fadeInUp} className="relative z-10">
+                <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
+                  <CardHeader className="text-center">
+                    <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/iKnBcXPfLDsxCYOt.JPG" alt="Lor Menghuy" className="w-full h-full object-cover" />
+                    </div>
+                    <CardTitle className="text-green-500 font-mono">Lor Menghuy</CardTitle>
+                    <CardDescription className="text-zinc-400 font-mono">Web Designer</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+              
               {[
-                { name: "Lor Menghuy", id: "Web Designer" },
                 { name: "Loy Lyza", id: "Researcher & Tester" },
               ].map((member, idx) => (
                 <motion.div key={idx} variants={fadeInUp}>
