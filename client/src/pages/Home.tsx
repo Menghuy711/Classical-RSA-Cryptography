@@ -198,21 +198,18 @@ export default function Home() {
                 </Card>
               </motion.div>
               
-              {[
-                { name: "Loy Lyza", id: "Researcher & Tester" },
-              ].map((member, idx) => (
-                <motion.div key={idx} variants={fadeInUp}>
-                  <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
-                    <CardHeader className="text-center">
-                      <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-zinc-800 flex items-center justify-center border-2 border-green-500">
-                        <User className="text-green-500" size={40} />
-                      </div>
-                      <CardTitle className="text-green-500 font-mono">{member.name}</CardTitle>
-                      <CardDescription className="text-zinc-400 font-mono">{member.id}</CardDescription>
-                    </CardHeader>
-                  </Card>
-                </motion.div>
-              ))}
+              {/* Loy Lyza Card with Photo - Top Layer */}
+              <motion.div variants={fadeInUp} className="relative z-10">
+                <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
+                  <CardHeader className="text-center">
+                    <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/zmUNWVEWiIOhlhFK.JPG" alt="Loy Lyza" className="w-full h-full object-cover" />
+                    </div>
+                    <CardTitle className="text-green-500 font-mono">Loy Lyza</CardTitle>
+                    <CardDescription className="text-zinc-400 font-mono">Researcher & Tester</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
             </div>
           </motion.div>
         </div>
