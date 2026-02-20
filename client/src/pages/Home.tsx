@@ -248,7 +248,7 @@ export default function Home() {
             variants={staggerChildren}
           >
             <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-mono font-bold text-center mb-4">
-              WHY LEARN <span className="text-green-500">BINARY MATHEMATICS?</span>
+              WHY LEARN <span className="text-green-500">About</span>
             </motion.h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-12">
@@ -577,7 +577,7 @@ function ConverterTabs() {
             <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">General Shift</TabsTrigger>
             <TabsTrigger value="affine" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">Affine Cipher</TabsTrigger>
             <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">Transposition</TabsTrigger>
-            <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">RSA Cryptography</TabsTrigger>
+            <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">RSA</TabsTrigger>
           </TabsList>
 
           {/* Caesar Tab */}
