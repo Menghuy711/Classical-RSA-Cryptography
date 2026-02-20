@@ -145,11 +145,11 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {[
-                { name: "Lor Menghuy", id: "00000001" },
-                { name: "Hen Sopheap", id: "00000010" },
-                { name: "Heang Sokun", id: "00000011" },
-                { name: "Loy Lyza", id: "00000100" },
-                { name: "Heng Liden", id: "00000101" },
+                { name: "Lor Menghuy", id: "Web Designer" },
+                { name: "Hen Sopheap", id: "Slide Designer & Tester" },
+                { name: "Heang Sokun", id: "Web Designer" },
+                { name: "Loy Lyza", id: "Researcher & Tester" },
+                { name: "Heng Liden", id: "Presenter" },
               ].map((member, idx) => (
                 <motion.div key={idx} variants={fadeInUp}>
                   <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
