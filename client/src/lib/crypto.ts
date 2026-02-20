@@ -263,7 +263,10 @@ export function rsaEncrypt(text: string, e: string, n: string): string {
         const c = modPow(m, eBig, nBig);
         return c.toString().padStart(4, '0');
       } else if (char === ' ') {
-        return '9999'; // Special code for space
+        // Use code 52 for space (after a-z which ends at 51)
+        const m = new BigNumber(52);
+        const c = modPow(m, eBig, nBig);
+        return c.toString().padStart(4, '0');
       }
       return char;
     })
@@ -282,8 +285,8 @@ export function rsaDecrypt(text: string, d: string, n: string): string {
         const m = modPow(c, dBig, nBig);
         const charCode = m.toNumber();
         
-        // Check for space
-        if (charCode === 9999) {
+        // Check for space (code 52)
+        if (charCode === 52) {
           return ' ';
         }
         // Uppercase letters (0-25)
