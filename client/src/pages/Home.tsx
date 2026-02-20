@@ -253,9 +253,9 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-12">
               {[
-                { icon: BookOpen, title: "Comprehensive Learning", desc: "Master both classical and modern cryptography techniques" },
-                { icon: Zap, title: "Interactive Exercises", desc: "Practice encryption and decryption in real-time" },
-                { icon: Users, title: "Community Support", desc: "Learn together with fellow cryptography enthusiasts" },
+                { icon: BookOpen, title: "Mr. LIM Seyha", desc: "Mathematic Lecturer" },
+                { icon: Zap, title: "Mr.UNG Sereysopea", desc: "Information Technology Engineering Student" },
+                { icon: Users, title: "Our teams", desc: "Thank you for exploring our website." },
               ].map((item, idx) => (
                 <motion.div key={idx} variants={fadeInUp}>
                   <Card className="bg-zinc-900 border-zinc-800 text-center h-full">
@@ -303,7 +303,7 @@ export default function Home() {
           </div>
           
           <div className="mt-8 text-center text-zinc-500 font-mono text-sm">
-            <p>Built with &lt;01101100 01101111 01110110 01100101&gt;</p>
+            <p>Built with &lt;ITE A5 Generation 11&gt;</p>
             <p className="mt-2">© 2026 MathProject. All rights reserved.</p>
           </div>
         </div>
