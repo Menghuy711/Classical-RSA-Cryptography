@@ -75,9 +75,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-sm border-b border-zinc-800">
         <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 flex items-center justify-center font-mono font-bold text-zinc-950">
-              MP
-            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
             <span className="text-xl font-mono font-bold text-green-500">Cryptography</span>
           </div>
           <div className="hidden md:flex gap-6 font-mono text-sm">
@@ -92,7 +90,8 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20">
         <div className="container mx-auto px-6 text-center relative z-10">
-          <motion.div {...fadeInUp}>
+          <motion.div {...fadeInUp} className="flex flex-col items-center">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-24 h-24 mb-4 rounded-full object-cover" />
             <Badge variant="outline" className="mb-6 border-green-500 text-green-500 font-mono">
               Royal University of Phnom Penh
             </Badge>
@@ -279,9 +278,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 flex items-center justify-center font-mono font-bold text-zinc-950">
-                MP
-              </div>
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
               <span className="text-xl font-mono font-bold text-green-500">Cryptography</span>
             </div>
             
