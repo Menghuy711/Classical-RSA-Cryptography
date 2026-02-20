@@ -252,13 +252,18 @@ export function rsaEncrypt(text: string, e: string, n: string): string {
   const nBig = new BigNumber(n);
   
   return text
-    .toUpperCase()
     .split('')
     .map(char => {
       if (char >= 'A' && char <= 'Z') {
         const m = new BigNumber(char.charCodeAt(0) - 65);
         const c = modPow(m, eBig, nBig);
         return c.toString().padStart(4, '0');
+      } else if (char >= 'a' && char <= 'z') {
+        const m = new BigNumber(char.charCodeAt(0) - 97 + 26);
+        const c = modPow(m, eBig, nBig);
+        return c.toString().padStart(4, '0');
+      } else if (char === ' ') {
+        return '9999'; // Special code for space
       }
       return char;
     })
@@ -276,8 +281,18 @@ export function rsaDecrypt(text: string, d: string, n: string): string {
         const c = new BigNumber(code.trim());
         const m = modPow(c, dBig, nBig);
         const charCode = m.toNumber();
+        
+        // Check for space
+        if (charCode === 9999) {
+          return ' ';
+        }
+        // Uppercase letters (0-25)
         if (charCode >= 0 && charCode <= 25) {
           return String.fromCharCode(charCode + 65);
+        }
+        // Lowercase letters (26-51)
+        if (charCode >= 26 && charCode <= 51) {
+          return String.fromCharCode(charCode - 26 + 97);
         }
       }
       return '';
