@@ -307,7 +307,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/wKCjXbtZgVpUHhBR.png" alt="Mr.LIM Seyha" className="w-full h-full object-cover" style={{paddingTop: 'px', paddingRight: 'px', paddingBottom: 'px', paddingLeft: 'px', marginTop: 'px', marginRight: 'px', marginBottom: 'px', marginLeft: 'px', height: '160px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono mb-2">Mr.LIM Seyha</CardTitle>
-                    <CardDescription className="text-zinc-400 font-mono">Mathematic Lecturer</CardDescription>
+                      <CardDescription className="text-zinc-400 font-mono">Special thanks to my Mathematics Lecturer for guidance and support</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
