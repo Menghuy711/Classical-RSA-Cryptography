@@ -320,7 +320,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/iUMYhzArdzJEztcA.png" alt="Mr.UNG Sereysopea" className="w-full h-full object-cover" />
                     </div>
                     <CardTitle className="text-green-500 font-mono mb-2">Mr.UNG Sereysopea</CardTitle>
-                    <CardDescription className="text-zinc-400 font-mono">Information Technology Engineering Student</CardDescription>
+                      <CardDescription className="text-zinc-400 font-mono">This project incorporates source code originally developed by the developer and adapted for this implementation</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
