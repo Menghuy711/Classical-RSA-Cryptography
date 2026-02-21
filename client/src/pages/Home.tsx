@@ -410,14 +410,16 @@ export default function Home() {
 }
 
 function TopicDetails({ topic }: { topic: string }) {
-  const topicData: Record<string, { meaning: string; formulas: string[]; history: string }> = {
+  const topicData: Record<string, { meaning: string; formulas: string[]; history: string; imageUrl?: string; caption?: string }> = {
     "Caesar Cipher": {
       meaning: "A substitution cipher where each letter is shifted by a fixed number of positions (traditionally 3). It replaces each letter with the letter a fixed number of positions down the alphabet.",
       formulas: [
         "Encryption: E(x) = (x + 3) mod 26",
         "Decryption: D(x) = (x - 3) mod 26"
       ],
-      history: "Created by Julius Caesar in the 1st century BC. Used for military communications in ancient Rome."
+      history: "Created by Julius Caesar in the 1st century BC. Used for military communications in ancient Rome.",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/62/Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg",
+      caption: "Julius Caesar – Roman general (100–44 BC)"
     },
     "General Shift": {
       meaning: "An extension of the Caesar cipher where the shift value can be any number from 0 to 25. Each letter is shifted by the same variable amount.",
@@ -425,7 +427,9 @@ function TopicDetails({ topic }: { topic: string }) {
         "Encryption: E(x) = (x + k) mod 26, where k is the shift key",
         "Decryption: D(x) = (x - k) mod 26"
       ],
-      history: "Generalization of Caesar cipher. Studied extensively in classical cryptography since the Middle Ages."
+      history: "Generalization of Caesar cipher. Studied extensively in classical cryptography since the Middle Ages.",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/62/Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg",
+      caption: "Julius Caesar – Early use of shift substitution"
     },
     "Affine Cipher": {
       meaning: "A substitution cipher combining multiplication and addition. Uses two keys (a, b) where a must be coprime to 26. More secure than shift ciphers due to two parameters.",
@@ -433,7 +437,9 @@ function TopicDetails({ topic }: { topic: string }) {
         "Encryption: E(x) = (ax + b) mod 26, where gcd(a, 26) = 1",
         "Decryption: D(x) = a^(-1)(x - b) mod 26"
       ],
-      history: "Developed as an enhancement to shift ciphers. Studied in classical cryptography as a more complex substitution method."
+      history: "Developed as an enhancement to shift ciphers. Studied in classical cryptography as a more complex substitution method.",
+      imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%231a1a1a' width='200' height='200'/%3E%3Ctext x='100' y='60' font-size='48' fill='%2322c55e' text-anchor='middle' font-family='monospace' font-weight='bold'%3E%26%2310230%3B%3C/text%3E%3Ctext x='100' y='130' font-size='14' fill='%2388cc00' text-anchor='middle' font-family='monospace'%3E(ax %2B b) mod 26%3C/text%3E%3C/svg%3E",
+      caption: "Based on modular arithmetic concepts (17th–19th century mathematics)"
     },
     "Transposition": {
       meaning: "A cipher that rearranges the positions of letters without changing them. Uses a keyword to determine the column order. The plaintext is written row-by-row and read column-by-column.",
@@ -441,7 +447,9 @@ function TopicDetails({ topic }: { topic: string }) {
         "Method: Write plaintext in rows under keyword, read columns in alphabetical order of keyword",
         "Decryption: Reverse the process using the same keyword"
       ],
-      history: "Used in military communications for centuries. Rail Fence and Columnar Transposition are common variants."
+      history: "Used in military communications for centuries. Rail Fence and Columnar Transposition are common variants.",
+      imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%231a1a1a' width='200' height='200'/%3E%3Cg fill='%2322c55e'%3E%3Crect x='20' y='30' width='30' height='30'/%3E%3Crect x='60' y='30' width='30' height='30'/%3E%3Crect x='100' y='30' width='30' height='30'/%3E%3Crect x='140' y='30' width='30' height='30'/%3E%3Crect x='20' y='70' width='30' height='30'/%3E%3Crect x='60' y='70' width='30' height='30'/%3E%3Crect x='100' y='70' width='30' height='30'/%3E%3Crect x='140' y='70' width='30' height='30'/%3E%3Crect x='20' y='110' width='30' height='30'/%3E%3Crect x='60' y='110' width='30' height='30'/%3E%3Crect x='100' y='110' width='30' height='30'/%3E%3Crect x='140' y='110' width='30' height='30'/%3E%3C/g%3E%3Ctext x='100' y='180' font-size='12' fill='%2388cc00' text-anchor='middle' font-family='monospace'%3EColumnar Rearrangement%3C/text%3E%3C/svg%3E",
+      caption: "Used in ancient Greece and Rome"
     },
     "RSA": {
       meaning: "A public-key cryptosystem using two keys: a public key for encryption and a private key for decryption. Based on the difficulty of factoring large prime numbers.",
@@ -450,7 +458,9 @@ function TopicDetails({ topic }: { topic: string }) {
         "Decryption: M = C^d mod n",
         "Where n = p*q, e is public exponent, d is private exponent"
       ],
-      history: "Invented by Rivest, Shamir, and Adleman in 1977. First practical public-key cryptosystem, revolutionized secure communication."
+      history: "Invented by Rivest, Shamir, and Adleman in 1977. First practical public-key cryptosystem, revolutionized secure communication.",
+      imageUrl: "https://ericplayground.com/wp-content/uploads/2017/03/rsa-2003.jpg",
+      caption: "Rivest, Shamir, and Adleman – Inventors of RSA (1977)"
     }
   };
 
@@ -477,7 +487,20 @@ function TopicDetails({ topic }: { topic: string }) {
       
       <div>
         <h3 className="text-xl font-bold text-green-500 mb-2">History:</h3>
-        <p className="text-sm leading-relaxed">{data.history}</p>
+        <p className="text-sm leading-relaxed mb-4">{data.history}</p>
+        {data.imageUrl && (
+          <div className="flex flex-col items-center">
+            <img 
+              src={data.imageUrl} 
+              alt={data.caption}
+              className="w-48 h-auto rounded-lg shadow-lg border border-green-500/30 object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <p className="text-xs text-zinc-400 mt-3 text-center max-w-xs">{data.caption}</p>
+          </div>
+        )}
       </div>
     </div>
   );
