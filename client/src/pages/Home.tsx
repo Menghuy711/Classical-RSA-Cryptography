@@ -48,6 +48,7 @@ const staggerChildren = {
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -240,7 +241,10 @@ export default function Home() {
                 { title: "RSA", code: "2.0", icon: Key, type: "Modern", desc: "Public-key cryptography" },
               ].map((topic, idx) => (
                 <motion.div key={idx} variants={fadeInUp}>
-                  <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green h-full">
+                  <Card 
+                    onClick={() => setSelectedTopic(topic.title)}
+                    className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green h-full cursor-pointer"
+                  >
                     <CardHeader>
                       <div className="flex items-start justify-between mb-4">
                         <div className="w-12 h-12 bg-green-500/10 flex items-center justify-center border border-green-500">
@@ -262,6 +266,30 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Topic Details Modal */}
+      {selectedTopic && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-zinc-900 border-2 border-green-500 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+          >
+            <div className="p-8">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-3xl font-mono font-bold text-green-500">{selectedTopic}</h2>
+                <button 
+                  onClick={() => setSelectedTopic(null)}
+                  className="text-zinc-400 hover:text-green-500 transition-colors font-mono text-2xl"
+                >
+                  X
+                </button>
+              </div>
+              <TopicDetails topic={selectedTopic} />
+            </div>
+          </motion.div>
+        </div>
+      )}
 
       {/* Converter Section */}
       <section id="converter" className="py-24 relative" style={{ clipPath: 'polygon(0 5%, 100% 0, 100% 100%, 0 100%)' }}>
@@ -377,6 +405,80 @@ export default function Home() {
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function TopicDetails({ topic }: { topic: string }) {
+  const topicData: Record<string, { meaning: string; formulas: string[]; history: string }> = {
+    "Caesar Cipher": {
+      meaning: "A substitution cipher where each letter is shifted by a fixed number of positions (traditionally 3). It replaces each letter with the letter a fixed number of positions down the alphabet.",
+      formulas: [
+        "Encryption: E(x) = (x + 3) mod 26",
+        "Decryption: D(x) = (x - 3) mod 26"
+      ],
+      history: "Created by Julius Caesar in the 1st century BC. Used for military communications in ancient Rome."
+    },
+    "General Shift": {
+      meaning: "An extension of the Caesar cipher where the shift value can be any number from 0 to 25. Each letter is shifted by the same variable amount.",
+      formulas: [
+        "Encryption: E(x) = (x + k) mod 26, where k is the shift key",
+        "Decryption: D(x) = (x - k) mod 26"
+      ],
+      history: "Generalization of Caesar cipher. Studied extensively in classical cryptography since the Middle Ages."
+    },
+    "Affine Cipher": {
+      meaning: "A substitution cipher combining multiplication and addition. Uses two keys (a, b) where a must be coprime to 26. More secure than shift ciphers due to two parameters.",
+      formulas: [
+        "Encryption: E(x) = (ax + b) mod 26, where gcd(a, 26) = 1",
+        "Decryption: D(x) = a^(-1)(x - b) mod 26"
+      ],
+      history: "Developed as an enhancement to shift ciphers. Studied in classical cryptography as a more complex substitution method."
+    },
+    "Transposition": {
+      meaning: "A cipher that rearranges the positions of letters without changing them. Uses a keyword to determine the column order. The plaintext is written row-by-row and read column-by-column.",
+      formulas: [
+        "Method: Write plaintext in rows under keyword, read columns in alphabetical order of keyword",
+        "Decryption: Reverse the process using the same keyword"
+      ],
+      history: "Used in military communications for centuries. Rail Fence and Columnar Transposition are common variants."
+    },
+    "RSA": {
+      meaning: "A public-key cryptosystem using two keys: a public key for encryption and a private key for decryption. Based on the difficulty of factoring large prime numbers.",
+      formulas: [
+        "Encryption: C = M^e mod n",
+        "Decryption: M = C^d mod n",
+        "Where n = p*q, e is public exponent, d is private exponent"
+      ],
+      history: "Invented by Rivest, Shamir, and Adleman in 1977. First practical public-key cryptosystem, revolutionized secure communication."
+    }
+  };
+
+  const data = topicData[topic];
+  if (!data) return null;
+
+  return (
+    <div className="space-y-6 text-zinc-300 font-mono">
+      <div>
+        <h3 className="text-xl font-bold text-green-500 mb-2">Meaning:</h3>
+        <p className="text-sm leading-relaxed">{data.meaning}</p>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-bold text-green-500 mb-2">Formula:</h3>
+        <div className="space-y-2">
+          {data.formulas.map((formula, idx) => (
+            <p key={idx} className="text-sm bg-zinc-800 p-3 rounded border border-green-500/30">
+              {formula}
+            </p>
+          ))}
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-xl font-bold text-green-500 mb-2">History:</h3>
+        <p className="text-sm leading-relaxed">{data.history}</p>
+      </div>
     </div>
   );
 }
