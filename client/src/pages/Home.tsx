@@ -75,7 +75,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-sm border-b border-zinc-800">
         <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/zEYBUtIQBVHxwrsX.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
             <div className="flex flex-col">
               <span className="text-xl font-mono font-bold text-green-500">សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>
               <span className="text-xs font-mono text-green-400">ROYAL UNIVERSITY OF PHNOM PENH</span>
@@ -94,7 +94,7 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center pt-20">
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div {...fadeInUp} className="flex flex-col items-center">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/zEYBUtIQBVHxwrsX.png" alt="RUPP Logo" className="w-24 h-24 mb-4 rounded-full object-cover" />
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-24 h-24 mb-4 rounded-full object-cover" />
             <Badge variant="outline" className="mb-6 border-green-500 text-green-500 font-mono">
               Royal University of Phnom Penh
             </Badge>
@@ -347,7 +347,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
-              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/zEYBUtIQBVHxwrsX.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
               <div className="flex flex-col">
                 <span className="text-xl font-mono font-bold text-green-500">សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>
                 <span className="text-xs font-mono text-green-400">ROYAL UNIVERSITY OF PHNOM PENH</span>
