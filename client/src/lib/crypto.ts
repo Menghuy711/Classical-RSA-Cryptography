@@ -162,43 +162,7 @@ function getKeyOrder(key: string): number[] {
   return sorted.map(item => item.idx);
 }
 
-// ============ RSA CIPHER - BigInt Implementation ============
-
-// Function to compute base^expo mod m using BigInt
-function rsaPower(base: bigint, expo: bigint, m: bigint): bigint {
-  let res = BigInt(1);
-  base = base % m;
-  while (expo > BigInt(0)) {
-    if ((expo & BigInt(1)) === BigInt(1)) {
-      res = (res * base) % m;
-    }
-    base = (base * base) % m;
-    expo = expo >> BigInt(1);
-  }
-  return res;
-}
-
-// Function to find GCD using Euclidean algorithm
-function rsaGcd(a: bigint, b: bigint): bigint {
-  while (b !== BigInt(0)) {
-    const t = b;
-    b = a % b;
-    a = t;
-  }
-  return a;
-}
-
-// Function to find modular inverse of e modulo phi(n)
-function rsaModInverse(e: bigint, phi: bigint): bigint {
-  for (let d = BigInt(2); d < phi; d++) {
-    if ((e * d) % phi === BigInt(1)) {
-      return d;
-    }
-  }
-  return BigInt(-1);
-}
-
-// Check if a number is prime
+// RSA Cipher
 export function isPrime(num: number): boolean {
   if (num <= 1) return false;
   if (num <= 3) return true;
@@ -209,133 +173,6 @@ export function isPrime(num: number): boolean {
   return true;
 }
 
-// RSA Key Generation with custom primes
-export function rsaGenerateKeysWithPrimes(p: number, q: number): { publicKey: { e: string; n: string }; privateKey: { d: string; n: string }; phi: string } | { error: string } {
-  // Validate primes
-  if (!isPrime(p) || !isPrime(q)) {
-    return { error: 'Both p and q must be prime numbers' };
-  }
-
-  const pBig = BigInt(p);
-  const qBig = BigInt(q);
-  const n = pBig * qBig;
-  const phi = (pBig - BigInt(1)) * (qBig - BigInt(1));
-
-  // Choose public exponent e (commonly 17 or 65537)
-  let e = BigInt(17);
-  if (rsaGcd(e, phi) !== BigInt(1)) {
-    // Try other small primes
-    const candidates = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
-    let found = false;
-    for (const candidate of candidates) {
-      const eBig = BigInt(candidate);
-      if (rsaGcd(eBig, phi) === BigInt(1)) {
-        e = eBig;
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
-      return { error: 'Could not find suitable public exponent' };
-    }
-  }
-
-  // Calculate private exponent d
-  const d = rsaModInverse(e, phi);
-  if (d === BigInt(-1)) {
-    return { error: 'Could not calculate private exponent' };
-  }
-
-  return {
-    publicKey: { e: e.toString(), n: n.toString() },
-    privateKey: { d: d.toString(), n: n.toString() },
-    phi: phi.toString()
-  };
-}
-
-// RSA Key Generation with default primes (7919, 1009)
-export function rsaGenerateKeys(): { publicKey: { e: string; n: string }; privateKey: { d: string; n: string }; phi: string } {
-  const p = BigInt(7919);
-  const q = BigInt(1009);
-  const n = p * q;
-  const phi = (p - BigInt(1)) * (q - BigInt(1));
-
-  // Common public exponent
-  let e = BigInt(17);
-  if (rsaGcd(e, phi) !== BigInt(1)) {
-    const candidates = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
-    for (const candidate of candidates) {
-      const eBig = BigInt(candidate);
-      if (rsaGcd(eBig, phi) === BigInt(1)) {
-        e = eBig;
-        break;
-      }
-    }
-  }
-
-  // Calculate private exponent d
-  const d = rsaModInverse(e, phi);
-
-  return {
-    publicKey: { e: e.toString(), n: n.toString() },
-    privateKey: { d: d.toString(), n: n.toString() },
-    phi: phi.toString()
-  };
-}
-
-// RSA Encrypt - supports both text and numeric input
-export function rsaEncrypt(input: string, e: string, n: string): string {
-  const eBig = BigInt(e);
-  const nBig = BigInt(n);
-
-  // Check if input is numeric
-  if (/^\d+$/.test(input.trim())) {
-    // Numeric input mode
-    const m = BigInt(input.trim());
-    const c = rsaPower(m, eBig, nBig);
-    return c.toString();
-  } else {
-    // Text input mode - convert each character to numeric value
-    const encrypted: string[] = [];
-    for (const char of input) {
-      const charCode = BigInt(char.charCodeAt(0));
-      const c = rsaPower(charCode, eBig, nBig);
-      encrypted.push(c.toString().padStart(6, '0'));
-    }
-    return encrypted.join(' ');
-  }
-}
-
-// RSA Decrypt - returns plaintext in same format as original input
-export function rsaDecrypt(ciphertext: string, d: string, n: string): string {
-  const dBig = BigInt(d);
-  const nBig = BigInt(n);
-
-  // Check if ciphertext contains spaces (text mode) or is single number (numeric mode)
-  if (ciphertext.includes(' ')) {
-    // Text mode - decrypt each encrypted character
-    const decrypted: string[] = [];
-    const parts = ciphertext.trim().split(' ');
-    for (const part of parts) {
-      if (part.trim() && /^\d+$/.test(part.trim())) {
-        const c = BigInt(part.trim());
-        const m = rsaPower(c, dBig, nBig);
-        const charCode = Number(m);
-        if (charCode >= 0 && charCode <= 1114111) { // Valid Unicode range
-          decrypted.push(String.fromCharCode(charCode));
-        }
-      }
-    }
-    return decrypted.join('');
-  } else {
-    // Numeric mode - decrypt single number
-    const c = BigInt(ciphertext.trim());
-    const m = rsaPower(c, dBig, nBig);
-    return m.toString();
-  }
-}
-
-// Legacy functions for backward compatibility
 export function gcdBig(a: BigNumber, b: BigNumber): BigNumber {
   while (!b.isEqualTo(0)) {
     const temp = b;
@@ -345,10 +182,131 @@ export function gcdBig(a: BigNumber, b: BigNumber): BigNumber {
   return a;
 }
 
+export function rsaGenerateKeysWithPrimes(p: number, q: number): { publicKey: { e: string; n: string }; privateKey: { d: string; n: string }; phi: string } | { error: string } {
+  // Validate primes
+  if (!isPrime(p) || !isPrime(q)) {
+    return { error: 'Both p and q must be prime numbers' };
+  }
+  
+  if (p === q) {
+    return { error: 'p and q must be different prime numbers' };
+  }
+  
+  const pBig = new BigNumber(p);
+  const qBig = new BigNumber(q);
+  const n = pBig.multipliedBy(qBig);
+  const phi = pBig.minus(1).multipliedBy(qBig.minus(1));
+  
+  // Choose public exponent e (commonly 17 or 65537)
+  let e = new BigNumber(17);
+  if (gcdBig(e, phi).isEqualTo(1)) {
+    // Use 17 if it's coprime with phi
+  } else {
+    // Try other small primes
+    const candidates = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+    let found = false;
+    for (const candidate of candidates) {
+      const eBig = new BigNumber(candidate);
+      if (gcdBig(eBig, phi).isEqualTo(1)) {
+        e = eBig;
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      return { error: 'Could not find suitable public exponent' };
+    }
+  }
+  
+  // Calculate private exponent
+  const d = modInverseBig(e, phi);
+  
+  return {
+    publicKey: { e: e.toString(), n: n.toString() },
+    privateKey: { d: d.toString(), n: n.toString() },
+    phi: phi.toString()
+  };
+}
+
+export function rsaGenerateKeys(): { publicKey: { e: string; n: string }; privateKey: { d: string; n: string } } {
+  // Use small primes for demonstration
+  const p = new BigNumber(61);
+  const q = new BigNumber(53);
+  const n = p.multipliedBy(q);
+  const phi = p.minus(1).multipliedBy(q.minus(1));
+  
+  // Common public exponent
+  const e = new BigNumber(17);
+  
+  // Calculate private exponent
+  const d = modInverseBig(e, phi);
+  
+  return {
+    publicKey: { e: e.toString(), n: n.toString() },
+    privateKey: { d: d.toString(), n: n.toString() }
+  };
+}
+
+export function rsaEncrypt(text: string, e: string, n: string): string {
+  const eBig = new BigNumber(e);
+  const nBig = new BigNumber(n);
+  
+  return text
+    .split('')
+    .map(char => {
+      if (char >= 'A' && char <= 'Z') {
+        const m = new BigNumber(char.charCodeAt(0) - 65);
+        const c = modPow(m, eBig, nBig);
+        return c.toString().padStart(4, '0');
+      } else if (char >= 'a' && char <= 'z') {
+        const m = new BigNumber(char.charCodeAt(0) - 97 + 26);
+        const c = modPow(m, eBig, nBig);
+        return c.toString().padStart(4, '0');
+      } else if (char === ' ') {
+        // Use code 52 for space (after a-z which ends at 51)
+        const m = new BigNumber(52);
+        const c = modPow(m, eBig, nBig);
+        return c.toString().padStart(4, '0');
+      }
+      return char;
+    })
+    .join(' ');
+}
+
+export function rsaDecrypt(text: string, d: string, n: string): string {
+  const dBig = new BigNumber(d);
+  const nBig = new BigNumber(n);
+  
+  return text
+    .split(' ')
+    .map(code => {
+      if (code.trim() && /^\d+$/.test(code.trim())) {
+        const c = new BigNumber(code.trim());
+        const m = modPow(c, dBig, nBig);
+        const charCode = m.toNumber();
+        
+        // Check for space (code 52)
+        if (charCode === 52) {
+          return ' ';
+        }
+        // Uppercase letters (0-25)
+        if (charCode >= 0 && charCode <= 25) {
+          return String.fromCharCode(charCode + 65);
+        }
+        // Lowercase letters (26-51)
+        if (charCode >= 26 && charCode <= 51) {
+          return String.fromCharCode(charCode - 26 + 97);
+        }
+      }
+      return '';
+    })
+    .join('');
+}
+
 function modPow(base: BigNumber, exp: BigNumber, mod: BigNumber): BigNumber {
   let result = new BigNumber(1);
   base = base.mod(mod);
-
+  
   while (exp.isGreaterThan(0)) {
     if (exp.mod(2).isEqualTo(1)) {
       result = result.multipliedBy(base).mod(mod);
@@ -356,19 +314,19 @@ function modPow(base: BigNumber, exp: BigNumber, mod: BigNumber): BigNumber {
     exp = exp.dividedToIntegerBy(2);
     base = base.multipliedBy(base).mod(mod);
   }
-
+  
   return result;
 }
 
 function modInverseBig(a: BigNumber, m: BigNumber): BigNumber {
   let [old_r, r] = [a, m];
   let [old_s, s] = [new BigNumber(1), new BigNumber(0)];
-
+  
   while (!r.isEqualTo(0)) {
     const quotient = old_r.dividedToIntegerBy(r);
     [old_r, r] = [r, old_r.minus(quotient.multipliedBy(r))];
     [old_s, s] = [s, old_s.minus(quotient.multipliedBy(s))];
   }
-
+  
   return old_s.isLessThan(0) ? old_s.plus(m) : old_s;
 }
