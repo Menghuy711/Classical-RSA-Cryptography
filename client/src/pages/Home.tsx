@@ -538,8 +538,9 @@ function ConverterTabs() {
   const [rsaKeys, setRsaKeys] = useState(rsaGenerateKeys());
   const [rsaEncrypted, setRsaEncrypted] = useState("");
   const [rsaDecrypted, setRsaDecrypted] = useState("");
-  const [rsaP, setRsaP] = useState("61");
-  const [rsaQ, setRsaQ] = useState("53");
+  const [rsaP, setRsaP] = useState("2");
+  const [rsaQ, setRsaQ] = useState("3");
+  const [rsaPrimeOptions] = useState([2, 3, 5, 7]);
   const [rsaKeyGenError, setRsaKeyGenError] = useState("");
   const [rsaE, setRsaE] = useState("");
   const [rsaN, setRsaN] = useState("");
@@ -553,6 +554,9 @@ function ConverterTabs() {
   const [rsaDecryptN, setRsaDecryptN] = useState("");
   const [rsaDecryptCiphertext, setRsaDecryptCiphertext] = useState("");
   const [rsaDecryptResult, setRsaDecryptResult] = useState("");
+  const [rsaTestMessage, setRsaTestMessage] = useState("");
+  const [rsaTestEncrypted, setRsaTestEncrypted] = useState("");
+  const [rsaTestDecrypted, setRsaTestDecrypted] = useState("");
 
   // Caesar handlers
   const handleCaesarEncrypt = () => {
@@ -712,6 +716,25 @@ function ConverterTabs() {
         setRsaEncryptN(result.publicKey.n);
         setRsaDecryptD(result.privateKey.d);
         setRsaDecryptN(result.publicKey.n);
+        
+        // Generate random test message
+        const testMessages = ["HELLO", "TEST", "MATH", "PRIME", "KEY", "RSA", "CRYPTO"];
+        const randomMsg = testMessages[Math.floor(Math.random() * testMessages.length)];
+        setRsaTestMessage(randomMsg);
+        
+        // Encrypt the test message
+        try {
+          const encrypted = rsaEncrypt(randomMsg, result.publicKey.e, result.publicKey.n);
+          setRsaTestEncrypted(encrypted);
+          
+          // Decrypt it back
+          const decrypted = rsaDecrypt(encrypted, result.privateKey.d, result.publicKey.n);
+          setRsaTestDecrypted(decrypted);
+        } catch (encErr) {
+          console.log("Test encryption/decryption skipped for small primes");
+          setRsaTestEncrypted("(Test skipped for small primes)");
+          setRsaTestDecrypted("(Test skipped for small primes)");
+        }
       }
     } catch (error) {
       setRsaKeyGenError("Error: " + (error as Error).message);
@@ -1009,28 +1032,34 @@ function ConverterTabs() {
             {/* Section 1: RSA Key Generation */}
             <div className="border border-zinc-700 rounded-lg p-4 bg-zinc-800/50">
               <h3 className="text-lg font-mono text-green-500 mb-4 font-bold">RSA Key Generation Demo</h3>
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <Label className="font-mono text-green-500">First Prime (p)</Label>
-                  <Input 
-                    type="number"
-                    value={rsaP}
-                    onChange={(e) => setRsaP(e.target.value)}
-                    className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                    placeholder="e.g., 61"
-                    style={{color: '#ffffff'}}
-                  />
+              <div className="mb-4">
+                <Label className="font-mono text-green-500 block mb-2">Select Prime (p): 2, 3, 5, 7</Label>
+                <div className="grid grid-cols-4 gap-2 mb-4">
+                  {[2, 3, 5, 7].map((prime) => (
+                    <Button
+                      key={prime}
+                      onClick={() => setRsaP(prime.toString())}
+                      variant={rsaP === prime.toString() ? "default" : "outline"}
+                      className={rsaP === prime.toString() ? "bg-green-500 text-zinc-950 font-mono" : "border-green-500 text-green-500 hover:bg-green-500/20 font-mono"}
+                    >
+                      {prime}
+                    </Button>
+                  ))}
                 </div>
-                <div>
-                  <Label className="font-mono text-green-500">Second Prime (q)</Label>
-                  <Input 
-                    type="number"
-                    value={rsaQ}
-                    onChange={(e) => setRsaQ(e.target.value)}
-                    className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                    placeholder="e.g., 53"
-                    style={{color: '#ffffff'}}
-                  />
+              </div>
+              <div className="mb-4">
+                <Label className="font-mono text-green-500 block mb-2">Select Prime (q): 2, 3, 5, 7</Label>
+                <div className="grid grid-cols-4 gap-2 mb-4">
+                  {[2, 3, 5, 7].map((prime) => (
+                    <Button
+                      key={`q-${prime}`}
+                      onClick={() => setRsaQ(prime.toString())}
+                      variant={rsaQ === prime.toString() ? "default" : "outline"}
+                      className={rsaQ === prime.toString() ? "bg-green-500 text-zinc-950 font-mono" : "border-green-500 text-green-500 hover:bg-green-500/20 font-mono"}
+                    >
+                      {prime}
+                    </Button>
+                  ))}
                 </div>
               </div>
               <Button onClick={handleRsaGenerateKeysWithPrimes} className="w-full bg-green-500 hover:bg-green-600 text-zinc-950 font-mono mb-4">
@@ -1047,6 +1076,14 @@ function ConverterTabs() {
                   <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>φ(n) = (p-1)(q-1) = {rsaPhi}</p>
                   <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>Public Key (e, n): ({rsaE}, {rsaN})</p>
                   <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>Private Key (d, n): ({rsaD}, {rsaN})</p>
+                  {rsaTestMessage && (
+                    <div className="mt-4 pt-4 border-t border-zinc-600 space-y-1">
+                      <p className="font-mono text-green-400 text-sm font-bold" style={{color: '#00ff00'}}>Random Test Output:</p>
+                      <p className="font-mono text-green-400 text-xs" style={{color: '#ffffff'}}>Test Message: {rsaTestMessage}</p>
+                      <p className="font-mono text-green-400 text-xs" style={{color: '#ffffff'}}>Encrypted: {rsaTestEncrypted}</p>
+                      <p className="font-mono text-green-400 text-xs" style={{color: '#ffffff'}}>Decrypted: {rsaTestDecrypted}</p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
