@@ -114,7 +114,7 @@ export default function Home() {
             className="text-xl md:text-2xl text-zinc-400 font-mono mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }} style={{color: '#6be109'}} style={{color: '#07fc03'}} style={{color: '#00c951'}}
+            transition={{ duration: 0.8, delay: 0.4 }} style={{color: '#00c951'}}
           >
             scroll down
           </motion.p>
@@ -250,12 +250,12 @@ export default function Home() {
                         <div className="w-12 h-12 bg-green-500/10 flex items-center justify-center border border-green-500">
                           <topic.icon className="text-green-500" size={24} />
                         </div>
-                        <Badge variant={topic.type === "Modern" ? "default" : "secondary"} className="font-mono" style={{color: '#000000', backgroundColor: '#171819'}} style={{backgroundColor: '#00b548'}} style={{backgroundColor: '#f8f8f7'}} style={{backgroundColor: '#00b548'}} style={{backgroundColor: '#00a441'}} style={{color: '#000000', backgroundColor: '#00a441'}} style={{color: '#000000'}} style={{color: '#000000', backgroundColor: '#00b648'}} style={{backgroundColor: '#0fa440'}}>
+                        <Badge variant={topic.type === "Modern" ? "default" : "secondary"} className="font-mono" style={{color: '#000000', backgroundColor: '#0fa440'}}>
                           {topic.type}
                         </Badge>
                       </div>
                       <CardTitle className="text-green-500 font-mono">{topic.title}</CardTitle>
-                      <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}} style={{color: '#ffffff'}} style={{color: '#ffffff'}} style={{color: '#ffffff'}} style={{color: '#ffffff'}}>
+                      <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>
                         <span className="text-green-500">{topic.code}</span> · {topic.desc}
                       </CardDescription>
                     </CardHeader>
