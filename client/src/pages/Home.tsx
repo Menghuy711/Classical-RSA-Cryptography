@@ -698,7 +698,7 @@ function ConverterTabs() {
         return;
       }
       
-      const result = rsaGenerateKeysWithPrimes(p, q);
+      const result = rsaGenerateKeysWithPrimes(p.toString(), q.toString());
       
       if ('error' in result) {
         setRsaKeyGenError(result.error);
