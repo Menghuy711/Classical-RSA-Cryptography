@@ -825,7 +825,7 @@ function ConverterTabs() {
                 type="number"
                 value={shiftValue}
                 onChange={(e) => setShiftValue(e.target.value)}
-                className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2" style={{color: '#ffffff'}}
               />
             </div>
             <div>
@@ -834,7 +834,7 @@ function ConverterTabs() {
                 value={shiftPlaintext}
                 onChange={(e) => setShiftPlaintext(e.target.value)}
                 className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                placeholder="Enter text to encrypt/decrypt..."
+                placeholder="Enter text to encrypt/decrypt..." style={{color: '#ffffff'}}
               />
             </div>
             <div className="flex gap-4">
@@ -848,7 +848,7 @@ function ConverterTabs() {
             {shiftEncrypted && (
               <div>
                 <Label className="font-mono text-green-500">Encrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all" style={{color: '#ffffff'}}>
                   {shiftEncrypted}
                 </div>
               </div>
@@ -856,7 +856,7 @@ function ConverterTabs() {
             {shiftDecrypted && (
               <div>
                 <Label className="font-mono text-green-500">Decrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all" style={{color: '#ffffff'}}>
                   {shiftDecrypted}
                 </div>
               </div>
@@ -869,7 +869,7 @@ function ConverterTabs() {
             {shiftBruteForce && (
               <div>
                 <Label className="font-mono text-green-500">Brute Force Results</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs" style={{color: '#ffffff'}}>
                   {shiftBruteForce}
                 </div>
               </div>
