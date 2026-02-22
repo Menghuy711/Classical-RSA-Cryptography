@@ -275,7 +275,7 @@ export function rsaDecrypt(text: string, d: string, n: string): string {
   const dBig = new BigNumber(d);
   const nBig = new BigNumber(n);
   
-  return text
+  const result = text
     .split(' ')
     .map(code => {
       if (code.trim() && /^\d+$/.test(code.trim())) {
@@ -298,7 +298,10 @@ export function rsaDecrypt(text: string, d: string, n: string): string {
       }
       return '';
     })
+    .filter(char => char !== '')
     .join('');
+  
+  return result;
 }
 
 function modPow(base: BigNumber, exp: BigNumber, mod: BigNumber): BigNumber {
