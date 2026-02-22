@@ -235,10 +235,10 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {[
                 { title: "Caesar Cipher", code: "1.1", icon: Lock, type: "Classical", desc: "Fixed shift of 3 positions" },
-                { title: "General Shift Cipher", code: "1.2", icon: Shuffle, type: "Classical", desc: "Variable shift cipher" },
+                { title: "General Shift", code: "1.2", icon: Shuffle, type: "Classical", desc: "Variable shift cipher" },
                 { title: "Affine Cipher", code: "1.3", icon: Code, type: "Classical", desc: "Linear transformation" },
-                { title: "Transposition Cipher", code: "1.4", icon: Shuffle, type: "Classical", desc: "Columnar rearrangement" },
-                { title: "RSA Cryptography", code: "2.0", icon: Key, type: "Modern", desc: "Public-key cryptography" },
+                { title: "Transposition", code: "1.4", icon: Shuffle, type: "Classical", desc: "Columnar rearrangement" },
+                { title: "RSA", code: "2.0", icon: Key, type: "Modern", desc: "Public-key cryptography" },
               ].map((topic, idx) => (
                 <motion.div key={idx} variants={fadeInUp}>
                   <Card 
