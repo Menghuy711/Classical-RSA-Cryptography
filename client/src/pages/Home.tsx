@@ -78,15 +78,15 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
             <div className="flex flex-col">
-              <span className="text-xl font-mono font-bold text-green-500">សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>
-              <span className="text-xs font-mono text-green-400">ROYAL UNIVERSITY OF PHNOM PENH</span>
+              <span className="text-xl font-mono font-bold text-green-500" style={{color: '#ffffff'}}>សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>
+              <span className="text-xs font-mono text-green-400" style={{color: '#ffffff'}}>ROYAL UNIVERSITY OF PHNOM PENH</span>
             </div>
           </div>
           <div className="hidden md:flex gap-6 font-mono text-sm">
-            <button onClick={() => scrollToSection("topics")} className="hover:text-green-400 transition-colors">Topics</button>
-            <button onClick={() => scrollToSection("members")} className="hover:text-green-400 transition-colors">Member</button>
-            <button onClick={() => scrollToSection("converter")} className="hover:text-green-400 transition-colors">Converter</button>
-            <button onClick={() => scrollToSection("about")} className="hover:text-green-400 transition-colors">About</button>
+            <button onClick={() => scrollToSection("topics")} className="hover:text-green-400 transition-colors" style={{color: '#ffffff'}}>Topics</button>
+            <button onClick={() => scrollToSection("members")} className="hover:text-green-400 transition-colors" style={{color: '#ffffff'}}>Member</button>
+            <button onClick={() => scrollToSection("converter")} className="hover:text-green-400 transition-colors" style={{color: '#ffffff'}}>Converter</button>
+            <button onClick={() => scrollToSection("about")} className="hover:text-green-400 transition-colors" style={{color: '#ffffff'}}>About</button>
           </div>
         </nav>
       </header>
@@ -105,16 +105,16 @@ export default function Home() {
             className="text-5xl md:text-7xl font-mono font-bold mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }} style={{color: '#ffffff'}}
           >
-            Classical <span className="text-green-500">and</span> RSA<br />Cryptography
+            Classical <span className="text-green-500" style={{color: '#ffffff'}}>and</span> RSA<br style={{color: '#ffffff'}} />Cryptography
           </motion.h1>
           
           <motion.p 
             className="text-xl md:text-2xl text-zinc-400 font-mono mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.4 }} style={{color: '#6be109'}} style={{color: '#07fc03'}} style={{color: '#00c951'}}
           >
             scroll down
           </motion.p>
@@ -142,7 +142,7 @@ export default function Home() {
             <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-mono font-bold text-center mb-4">
               OUR <span className="text-green-500">MEMBERS</span>
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-center text-zinc-400 font-mono mb-12">
+            <motion.p variants={fadeInUp} className="text-center text-zinc-400 font-mono mb-12" style={{color: '#ffffff'}}>
               The team behind the cryptography
             </motion.p>
 
@@ -152,10 +152,10 @@ export default function Home() {
                 <Card className="bg-zinc-900 border-zinc-800 hover:border-green-500 transition-all duration-300 hover:glow-green">
                   <CardHeader className="text-center">
                     <div className="w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden border-2 border-green-500">
-                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/HXWFwDiINOrRetRN.JPG" alt="Heang Sokun" className="w-full h-full object-cover" style={{height: '160px'}} />
+                      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/HXWFwDiINOrRetRN.JPG" alt="Heang Sokun" className="w-full h-full object-cover" style={{height: '160px', borderColor: '#ffffff', backgroundColor: '#ffffff'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Heang Sokun</CardTitle>
-                    <CardDescription className="text-zinc-400 font-mono">Web Designer</CardDescription>
+                    <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>Web Designer</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -168,7 +168,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/abGDOqpqQosYXyRw.jpg" alt="Hen Sopheap" className="w-full h-full object-cover" style={{height: '160px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Hen Sopheap</CardTitle>
-                    <CardDescription className="text-zinc-400 font-mono">Slide Designer & Tester</CardDescription>
+                    <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>Slide Designer & Tester</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -181,7 +181,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/eplUvtPQIsyZUmdg.JPG" alt="Heng Liden" className="w-full h-full object-cover" style={{height: '155px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Heng Liden</CardTitle>
-                    <CardDescription className="text-zinc-400 font-mono">Presenter</CardDescription>
+                    <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>Presenter</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -194,7 +194,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/iKnBcXPfLDsxCYOt.JPG" alt="Lor Menghuy" className="w-full h-full object-cover" style={{height: '140px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Lor Menghuy</CardTitle>
-                    <CardDescription className="text-zinc-400 font-mono">Web Designer</CardDescription>
+                    <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>Web Designer</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -207,7 +207,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/zmUNWVEWiIOhlhFK.JPG" alt="Loy Lyza" className="w-full h-full object-cover" style={{height: '150px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono">Loy Lyza</CardTitle>
-                    <CardDescription className="text-zinc-400 font-mono">Researcher & Tester</CardDescription>
+                    <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>Researcher & Tester</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -228,7 +228,7 @@ export default function Home() {
             <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-mono font-bold text-center mb-4">
               CRYPTOGRAPHY <span className="text-green-500">TOPICS</span>
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-center text-zinc-400 font-mono mb-12">
+            <motion.p variants={fadeInUp} className="text-center text-zinc-400 font-mono mb-12" style={{color: '#ffffff'}}>
               Explore classical and modern encryption &   decryption methods
             </motion.p>
 
@@ -250,12 +250,12 @@ export default function Home() {
                         <div className="w-12 h-12 bg-green-500/10 flex items-center justify-center border border-green-500">
                           <topic.icon className="text-green-500" size={24} />
                         </div>
-                        <Badge variant={topic.type === "Modern" ? "default" : "secondary"} className="font-mono">
+                        <Badge variant={topic.type === "Modern" ? "default" : "secondary"} className="font-mono" style={{color: '#000000', backgroundColor: '#171819'}} style={{backgroundColor: '#00b548'}} style={{backgroundColor: '#f8f8f7'}} style={{backgroundColor: '#00b548'}} style={{backgroundColor: '#00a441'}} style={{color: '#000000', backgroundColor: '#00a441'}} style={{color: '#000000'}} style={{color: '#000000', backgroundColor: '#00b648'}} style={{backgroundColor: '#0fa440'}}>
                           {topic.type}
                         </Badge>
                       </div>
                       <CardTitle className="text-green-500 font-mono">{topic.title}</CardTitle>
-                      <CardDescription className="text-zinc-400 font-mono">
+                      <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}} style={{color: '#ffffff'}} style={{color: '#ffffff'}} style={{color: '#ffffff'}} style={{color: '#ffffff'}}>
                         <span className="text-green-500">{topic.code}</span> · {topic.desc}
                       </CardDescription>
                     </CardHeader>
@@ -304,7 +304,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-mono font-bold text-center mb-4">
               ENCRYPTION & DECRYPTION <span className="text-green-500">CONVERTER</span>
             </h2>
-            <p className="text-center text-zinc-400 font-mono mb-12">
+            <p className="text-center text-zinc-400 font-mono mb-12" style={{color: '#ffffff'}}>
               Interactive cryptography tools
             </p>
 
@@ -335,7 +335,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/wKCjXbtZgVpUHhBR.png" alt="Mr.LIM Seyha" className="w-full h-full object-cover" style={{paddingTop: 'px', paddingRight: 'px', paddingBottom: 'px', paddingLeft: 'px', marginTop: 'px', marginRight: 'px', marginBottom: 'px', marginLeft: 'px', height: '160px'}} />
                     </div>
                     <CardTitle className="text-green-500 font-mono mb-2">Mr.LIM Seyha</CardTitle>
-                      <CardDescription className="text-zinc-400 font-mono">Special thanks to my Mathematics Lecturer for guidance and support</CardDescription>
+                      <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>Special thanks to my Mathematics Lecturer for guidance and support</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -348,7 +348,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/iUMYhzArdzJEztcA.png" alt="Mr.UNG Sereysopea" className="w-full h-full object-cover" />
                     </div>
                     <CardTitle className="text-green-500 font-mono mb-2">Mr.UNG Sereysopea</CardTitle>
-                      <CardDescription className="text-zinc-400 font-mono">This project incorporates source code originally developed by the developer and adapted for this implementation</CardDescription>
+                      <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>This project incorporates source code originally developed by the developer and adapted for this implementation</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -361,7 +361,7 @@ export default function Home() {
                       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/mYMfnfyRdDCCECaF.png" alt="Our Teams" className="w-full h-full object-cover" />
                     </div>
                     <CardTitle className="text-green-500 font-mono mb-2">Our teams</CardTitle>
-                    <CardDescription className="text-zinc-400 font-mono">Thank you for exploring our website</CardDescription>
+                    <CardDescription className="text-zinc-400 font-mono" style={{color: '#ffffff'}}>Thank you for exploring our website</CardDescription>
                   </CardHeader>
                 </Card>
               </motion.div>
@@ -377,16 +377,16 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
               <div className="flex flex-col">
-                <span className="text-xl font-mono font-bold text-green-500">សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>
-                <span className="text-xs font-mono text-green-400">ROYAL UNIVERSITY OF PHNOM PENH</span>
+                <span className="text-xl font-mono font-bold text-green-500" style={{color: '#ffffff'}}>សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>
+                <span className="text-xs font-mono text-green-400" style={{color: '#ffffff'}}>ROYAL UNIVERSITY OF PHNOM PENH</span>
               </div>
             </div>
             
             <div className="flex gap-6 font-mono text-sm text-zinc-400">
-              <button onClick={() => scrollToSection("topics")} className="hover:text-green-500 transition-colors">Topics</button>
-              <button onClick={() => scrollToSection("members")} className="hover:text-green-500 transition-colors">Member</button>
-              <button onClick={() => scrollToSection("converter")} className="hover:text-green-500 transition-colors">Converter</button>
-              <button onClick={() => scrollToSection("about")} className="hover:text-green-500 transition-colors">About</button>
+              <button onClick={() => scrollToSection("topics")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>Topics</button>
+              <button onClick={() => scrollToSection("members")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>Member</button>
+              <button onClick={() => scrollToSection("converter")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>Converter</button>
+              <button onClick={() => scrollToSection("about")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>About</button>
             </div>
             
             <div className="flex gap-4">
@@ -400,8 +400,8 @@ export default function Home() {
           </div>
           
           <div className="mt-8 text-center text-zinc-500 font-mono text-sm">
-            <p>Built with &lt;ITE A5 Generation 11&gt;</p>
-            <p className="mt-2">© 2026 MathProject. All rights reserved.</p>
+            <p style={{color: '#ffffff'}}>Built with &lt;ITE A5 Generation 11&gt;</p>
+            <p className="mt-2" style={{color: '#ffffff'}}>© 2026 MathProject. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -767,11 +767,11 @@ function ConverterTabs() {
       <CardContent className="p-6">
         <Tabs defaultValue="caesar" className="w-full">
           <TabsList className="grid grid-cols-5 w-full bg-zinc-800 mb-6 overflow-x-auto">
-            <TabsTrigger value="caesar" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">Caesar Cipher</TabsTrigger>
-            <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">General Shift</TabsTrigger>
-            <TabsTrigger value="affine" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">Affine Cipher</TabsTrigger>
-            <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">Transposition</TabsTrigger>
-            <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap">RSA</TabsTrigger>
+            <TabsTrigger value="caesar" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Caesar Cipher</TabsTrigger>
+            <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>General Shift</TabsTrigger>
+            <TabsTrigger value="affine" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Affine Cipher</TabsTrigger>
+            <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Transposition</TabsTrigger>
+            <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>RSA</TabsTrigger>
           </TabsList>
 
           {/* Caesar Tab */}
