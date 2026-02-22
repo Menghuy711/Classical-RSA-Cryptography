@@ -538,9 +538,8 @@ function ConverterTabs() {
   const [rsaKeys, setRsaKeys] = useState(rsaGenerateKeys());
   const [rsaEncrypted, setRsaEncrypted] = useState("");
   const [rsaDecrypted, setRsaDecrypted] = useState("");
-  const [rsaP, setRsaP] = useState("2");
-  const [rsaQ, setRsaQ] = useState("3");
-  const [rsaPrimeOptions] = useState([2, 3, 5, 7]);
+  const [rsaP, setRsaP] = useState("61");
+  const [rsaQ, setRsaQ] = useState("53");
   const [rsaKeyGenError, setRsaKeyGenError] = useState("");
   const [rsaE, setRsaE] = useState("");
   const [rsaN, setRsaN] = useState("");
@@ -554,9 +553,6 @@ function ConverterTabs() {
   const [rsaDecryptN, setRsaDecryptN] = useState("");
   const [rsaDecryptCiphertext, setRsaDecryptCiphertext] = useState("");
   const [rsaDecryptResult, setRsaDecryptResult] = useState("");
-  const [rsaTestMessage, setRsaTestMessage] = useState("");
-  const [rsaTestEncrypted, setRsaTestEncrypted] = useState("");
-  const [rsaTestDecrypted, setRsaTestDecrypted] = useState("");
 
   // Caesar handlers
   const handleCaesarEncrypt = () => {
@@ -698,7 +694,7 @@ function ConverterTabs() {
         return;
       }
       
-      const result = rsaGenerateKeysWithPrimes(p.toString(), q.toString());
+      const result = rsaGenerateKeysWithPrimes(p, q);
       
       if ('error' in result) {
         setRsaKeyGenError(result.error);
@@ -716,25 +712,6 @@ function ConverterTabs() {
         setRsaEncryptN(result.publicKey.n);
         setRsaDecryptD(result.privateKey.d);
         setRsaDecryptN(result.publicKey.n);
-        
-        // Generate random test message
-        const testMessages = ["HELLO", "TEST", "MATH", "PRIME", "KEY", "RSA", "CRYPTO"];
-        const randomMsg = testMessages[Math.floor(Math.random() * testMessages.length)];
-        setRsaTestMessage(randomMsg);
-        
-        // Encrypt the test message
-        try {
-          const encrypted = rsaEncrypt(randomMsg, result.publicKey.e, result.publicKey.n);
-          setRsaTestEncrypted(encrypted);
-          
-          // Decrypt it back
-          const decrypted = rsaDecrypt(encrypted, result.privateKey.d, result.publicKey.n);
-          setRsaTestDecrypted(decrypted);
-        } catch (encErr) {
-          console.log("Test encryption/decryption skipped for small primes");
-          setRsaTestEncrypted("(Test skipped for small primes)");
-          setRsaTestDecrypted("(Test skipped for small primes)");
-        }
       }
     } catch (error) {
       setRsaKeyGenError("Error: " + (error as Error).message);
@@ -1070,14 +1047,6 @@ function ConverterTabs() {
                   <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>φ(n) = (p-1)(q-1) = {rsaPhi}</p>
                   <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>Public Key (e, n): ({rsaE}, {rsaN})</p>
                   <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>Private Key (d, n): ({rsaD}, {rsaN})</p>
-                  {rsaTestMessage && (
-                    <div className="mt-4 pt-4 border-t border-zinc-600 space-y-1">
-                      <p className="font-mono text-green-400 text-sm font-bold" style={{color: '#00ff00'}}>Random Test Output:</p>
-                      <p className="font-mono text-green-400 text-xs" style={{color: '#ffffff'}}>Test Message: {rsaTestMessage}</p>
-                      <p className="font-mono text-green-400 text-xs" style={{color: '#ffffff'}}>Encrypted: {rsaTestEncrypted}</p>
-                      <p className="font-mono text-green-400 text-xs" style={{color: '#ffffff'}}>Decrypted: {rsaTestDecrypted}</p>
-                    </div>
-                  )}
                 </div>
               )}
             </div>
