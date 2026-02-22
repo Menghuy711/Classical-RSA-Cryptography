@@ -188,9 +188,7 @@ export function rsaGenerateKeysWithPrimes(p: number, q: number): { publicKey: { 
     return { error: 'Both p and q must be prime numbers' };
   }
   
-  if (p === q) {
-    return { error: 'p and q must be different prime numbers' };
-  }
+  // p and q can be the same prime number
   
   const pBig = new BigNumber(p);
   const qBig = new BigNumber(q);
