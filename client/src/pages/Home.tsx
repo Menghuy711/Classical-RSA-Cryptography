@@ -421,7 +421,7 @@ function TopicDetails({ topic }: { topic: string }) {
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/62/Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg",
       caption: "Julius Caesar – Roman general (100–44 BC)"
     },
-    "General Shift": {
+    "General Shift Cipher": {
       meaning: "An extension of the Caesar cipher where the shift value can be any number from 0 to 25. Each letter is shifted by the same variable amount.",
       formulas: [
         "Encryption: E(x) = (x + k) mod 26, where k is the shift key",
@@ -441,7 +441,7 @@ function TopicDetails({ topic }: { topic: string }) {
       imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%231a1a1a' width='200' height='200'/%3E%3Ctext x='100' y='60' font-size='48' fill='%2322c55e' text-anchor='middle' font-family='monospace' font-weight='bold'%3E%26%2310230%3B%3C/text%3E%3Ctext x='100' y='130' font-size='14' fill='%2388cc00' text-anchor='middle' font-family='monospace'%3E(ax %2B b) mod 26%3C/text%3E%3C/svg%3E",
       caption: "Based on modular arithmetic concepts (17th–19th century mathematics)"
     },
-    "Transposition": {
+    "Transposition Cipher": {
       meaning: "A cipher that rearranges the positions of letters without changing them. Uses a keyword to determine the column order. The plaintext is written row-by-row and read column-by-column.",
       formulas: [
         "Method: Write plaintext in rows under keyword, read columns in alphabetical order of keyword",
@@ -451,7 +451,7 @@ function TopicDetails({ topic }: { topic: string }) {
       imageUrl: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%231a1a1a' width='200' height='200'/%3E%3Cg fill='%2322c55e'%3E%3Crect x='20' y='30' width='30' height='30'/%3E%3Crect x='60' y='30' width='30' height='30'/%3E%3Crect x='100' y='30' width='30' height='30'/%3E%3Crect x='140' y='30' width='30' height='30'/%3E%3Crect x='20' y='70' width='30' height='30'/%3E%3Crect x='60' y='70' width='30' height='30'/%3E%3Crect x='100' y='70' width='30' height='30'/%3E%3Crect x='140' y='70' width='30' height='30'/%3E%3Crect x='20' y='110' width='30' height='30'/%3E%3Crect x='60' y='110' width='30' height='30'/%3E%3Crect x='100' y='110' width='30' height='30'/%3E%3Crect x='140' y='110' width='30' height='30'/%3E%3C/g%3E%3Ctext x='100' y='180' font-size='12' fill='%2388cc00' text-anchor='middle' font-family='monospace'%3EColumnar Rearrangement%3C/text%3E%3C/svg%3E",
       caption: "Used in ancient Greece and Rome"
     },
-    "RSA": {
+    "RSA Cryptography": {
       meaning: "A public-key cryptosystem using two keys: a public key for encryption and a private key for decryption. Based on the difficulty of factoring large prime numbers.",
       formulas: [
         "Encryption: C = M^e mod n",
