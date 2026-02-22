@@ -767,7 +767,7 @@ function ConverterTabs() {
       <CardContent className="p-6">
         <Tabs defaultValue="caesar" className="w-full">
           <TabsList className="grid grid-cols-5 w-full bg-zinc-800 mb-6 overflow-x-auto">
-            <TabsTrigger value="caesar" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Caesar Cipher</TabsTrigger>
+            <TabsTrigger value="caesar" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>Caesar Cipher</TabsTrigger>
             <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>General Shift</TabsTrigger>
             <TabsTrigger value="affine" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>Affine</TabsTrigger>
             <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>Transposition</TabsTrigger>
@@ -786,6 +786,7 @@ function ConverterTabs() {
                 onChange={(e) => setCaesarPlaintext(e.target.value)}
                 className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
                 placeholder="Enter text to encrypt/decrypt..."
+                style={{color: '#ffffff'}}
               />
             </div>
             <div className="flex gap-4">
@@ -799,7 +800,7 @@ function ConverterTabs() {
             {caesarEncrypted && (
               <div>
                 <Label className="font-mono text-green-500">Encrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all" style={{color: '#ffffff'}}>
                   {caesarEncrypted}
                 </div>
               </div>
@@ -807,7 +808,7 @@ function ConverterTabs() {
             {caesarDecrypted && (
               <div>
                 <Label className="font-mono text-green-500">Decrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all" style={{color: '#ffffff'}}>
                   {caesarDecrypted}
                 </div>
               </div>
@@ -908,6 +909,7 @@ function ConverterTabs() {
                 onChange={(e) => setAffinePlaintext(e.target.value)}
                 className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
                 placeholder="Enter text to encrypt/decrypt..."
+                style={{color: '#ffffff'}}
               />
             </div>
             <div className="flex gap-4">
@@ -921,7 +923,7 @@ function ConverterTabs() {
             {affineEncrypted && (
               <div>
                 <Label className="font-mono text-green-500">Encrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all" style={{color: '#ffffff'}}>
                   {affineEncrypted}
                 </div>
               </div>
@@ -929,7 +931,7 @@ function ConverterTabs() {
             {affineDecrypted && (
               <div>
                 <Label className="font-mono text-green-500">Decrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all" style={{color: '#ffffff'}}>
                   {affineDecrypted}
                 </div>
               </div>
@@ -942,7 +944,7 @@ function ConverterTabs() {
             {affineBruteForce && (
               <div>
                 <Label className="font-mono text-green-500">Brute Force Results</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs" style={{color: '#ffffff'}}>
                   {affineBruteForce}
                 </div>
               </div>
@@ -970,6 +972,7 @@ function ConverterTabs() {
                 onChange={(e) => setTransPlaintext(e.target.value)}
                 className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
                 placeholder="Enter text to encrypt/decrypt..."
+                style={{color: '#ffffff'}}
               />
             </div>
             <div className="flex gap-4">
@@ -983,7 +986,7 @@ function ConverterTabs() {
             {transEncrypted && (
               <div>
                 <Label className="font-mono text-green-500">Encrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all" style={{color: '#ffffff'}}>
                   {transEncrypted}
                 </div>
               </div>
@@ -991,7 +994,7 @@ function ConverterTabs() {
             {transDecrypted && (
               <div>
                 <Label className="font-mono text-green-500">Decrypted Text</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all">
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all" style={{color: '#ffffff'}}>
                   {transDecrypted}
                 </div>
               </div>
