@@ -1032,34 +1032,28 @@ function ConverterTabs() {
             {/* Section 1: RSA Key Generation */}
             <div className="border border-zinc-700 rounded-lg p-4 bg-zinc-800/50">
               <h3 className="text-lg font-mono text-green-500 mb-4 font-bold">RSA Key Generation Demo</h3>
-              <div className="mb-4">
-                <Label className="font-mono text-green-500 block mb-2">Select Prime (p): 2, 3, 5, 7</Label>
-                <div className="grid grid-cols-4 gap-2 mb-4">
-                  {[2, 3, 5, 7].map((prime) => (
-                    <Button
-                      key={prime}
-                      onClick={() => setRsaP(prime.toString())}
-                      variant={rsaP === prime.toString() ? "default" : "outline"}
-                      className={rsaP === prime.toString() ? "bg-green-500 text-zinc-950 font-mono" : "border-green-500 text-green-500 hover:bg-green-500/20 font-mono"}
-                    >
-                      {prime}
-                    </Button>
-                  ))}
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                  <Label className="font-mono text-green-500">First Prime (p)</Label>
+                  <Input 
+                    type="number"
+                    value={rsaP}
+                    onChange={(e) => setRsaP(e.target.value)}
+                    className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                    placeholder="e.g., 61"
+                    style={{color: '#ffffff'}}
+                  />
                 </div>
-              </div>
-              <div className="mb-4">
-                <Label className="font-mono text-green-500 block mb-2">Select Prime (q): 2, 3, 5, 7</Label>
-                <div className="grid grid-cols-4 gap-2 mb-4">
-                  {[2, 3, 5, 7].map((prime) => (
-                    <Button
-                      key={`q-${prime}`}
-                      onClick={() => setRsaQ(prime.toString())}
-                      variant={rsaQ === prime.toString() ? "default" : "outline"}
-                      className={rsaQ === prime.toString() ? "bg-green-500 text-zinc-950 font-mono" : "border-green-500 text-green-500 hover:bg-green-500/20 font-mono"}
-                    >
-                      {prime}
-                    </Button>
-                  ))}
+                <div>
+                  <Label className="font-mono text-green-500">Second Prime (q)</Label>
+                  <Input 
+                    type="number"
+                    value={rsaQ}
+                    onChange={(e) => setRsaQ(e.target.value)}
+                    className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
+                    placeholder="e.g., 53"
+                    style={{color: '#ffffff'}}
+                  />
                 </div>
               </div>
               <Button onClick={handleRsaGenerateKeysWithPrimes} className="w-full bg-green-500 hover:bg-green-600 text-zinc-950 font-mono mb-4">
