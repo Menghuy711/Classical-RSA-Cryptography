@@ -870,8 +870,8 @@ function ConverterTabs() {
             {shiftBruteForce && (
               <div>
                 <Label className="font-mono text-green-500">Brute Force Results</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs" style={{color: '#ffffff'}}>
-                  {shiftBruteForce}
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs" style={{color: '#ffffff', whiteSpace: 'pre-wrap'}}>
+                  {shiftBruteForce.split('|').join('|\n')}
                 </div>
               </div>
             )}
@@ -946,8 +946,8 @@ function ConverterTabs() {
             {affineBruteForce && (
               <div>
                 <Label className="font-mono text-green-500">Brute Force Results</Label>
-                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs" style={{color: '#ffffff'}}>
-                  {affineBruteForce}
+                <div className="bg-zinc-800 border border-zinc-700 p-4 mt-2 font-mono text-green-500 break-all max-h-48 overflow-y-auto text-xs" style={{color: '#ffffff', whiteSpace: 'pre-wrap'}}>
+                  {affineBruteForce.split('|').join('|\n')}
                 </div>
               </div>
             )}
@@ -1043,10 +1043,10 @@ function ConverterTabs() {
               )}
               {rsaE && rsaN && rsaD && (
                 <div className="bg-zinc-700/50 p-4 rounded space-y-2">
-                  <p className="font-mono text-green-400 text-sm">n = p × q = {rsaN}</p>
-                  <p className="font-mono text-green-400 text-sm">φ(n) = (p-1)(q-1) = {rsaPhi}</p>
-                  <p className="font-mono text-green-400 text-sm">Public Key (e, n): ({rsaE}, {rsaN})</p>
-                  <p className="font-mono text-green-400 text-sm">Private Key (d, n): ({rsaD}, {rsaN})</p>
+                  <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>n = p × q = {rsaN}</p>
+                  <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>φ(n) = (p-1)(q-1) = {rsaPhi}</p>
+                  <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>Public Key (e, n): ({rsaE}, {rsaN})</p>
+                  <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>Private Key (d, n): ({rsaD}, {rsaN})</p>
                 </div>
               )}
             </div>
