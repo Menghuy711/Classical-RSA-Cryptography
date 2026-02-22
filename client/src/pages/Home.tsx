@@ -1011,7 +1011,7 @@ function ConverterTabs() {
                     value={rsaP}
                     onChange={(e) => setRsaP(e.target.value)}
                     className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                    placeholder="e.g., 61"
+                    placeholder="e.g., 61" style={{color: '#ffffff'}}
                   />
                 </div>
                 <div>
@@ -1021,7 +1021,7 @@ function ConverterTabs() {
                     value={rsaQ}
                     onChange={(e) => setRsaQ(e.target.value)}
                     className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                    placeholder="e.g., 53"
+                    placeholder="e.g., 53" style={{color: '#ffffff'}}
                   />
                 </div>
               </div>
@@ -1035,10 +1035,10 @@ function ConverterTabs() {
               )}
               {rsaE && rsaN && rsaD && (
                 <div className="bg-zinc-700/50 p-4 rounded space-y-2">
-                  <p className="font-mono text-green-400 text-sm">n = p × q = {rsaN}</p>
-                  <p className="font-mono text-green-400 text-sm">φ(n) = (p-1)(q-1) = {rsaPhi}</p>
-                  <p className="font-mono text-green-400 text-sm">Public Key (e, n): ({rsaE}, {rsaN})</p>
-                  <p className="font-mono text-green-400 text-sm">Private Key (d, n): ({rsaD}, {rsaN})</p>
+                  <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>n = p × q = {rsaN}</p>
+                  <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>φ(n) = (p-1)(q-1) = {rsaPhi}</p>
+                  <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>Public Key (e, n): ({rsaE}, {rsaN})</p>
+                  <p className="font-mono text-green-400 text-sm" style={{color: '#ffffff'}}>Private Key (d, n): ({rsaD}, {rsaN})</p>
                 </div>
               )}
             </div>
@@ -1056,7 +1056,7 @@ function ConverterTabs() {
                     value={rsaEncryptMessage}
                     onChange={(e) => setRsaEncryptMessage(e.target.value)}
                     className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                    placeholder="Enter message to encrypt"
+                    placeholder="Enter message to encrypt" style={{color: '#ffffff'}}
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -1066,7 +1066,7 @@ function ConverterTabs() {
                       value={rsaEncryptE}
                       onChange={(e) => setRsaEncryptE(e.target.value)}
                       className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                      placeholder="e"
+                      placeholder="e" style={{color: '#ffffff'}}
                     />
                   </div>
                   <div>
@@ -1075,7 +1075,7 @@ function ConverterTabs() {
                       value={rsaEncryptN}
                       onChange={(e) => setRsaEncryptN(e.target.value)}
                       className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                      placeholder="n"
+                      placeholder="n" style={{color: '#ffffff'}}
                     />
                   </div>
                 </div>
@@ -1086,7 +1086,7 @@ function ConverterTabs() {
               {rsaEncryptResult && (
                 <div>
                   <Label className="font-mono text-green-500">Encrypted Ciphertext</Label>
-                  <div className="bg-zinc-800 border border-zinc-700 p-3 mt-2 font-mono text-green-500 break-all text-xs max-h-24 overflow-y-auto">
+                  <div className="bg-zinc-800 border border-zinc-700 p-3 mt-2 font-mono text-green-500 break-all text-xs max-h-24 overflow-y-auto" style={{color: '#ffffff'}}>
                     {rsaEncryptResult}
                   </div>
                 </div>
@@ -1106,7 +1106,7 @@ function ConverterTabs() {
                     value={rsaDecryptCiphertext}
                     onChange={(e) => setRsaDecryptCiphertext(e.target.value)}
                     className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                    placeholder="Enter ciphertext to decrypt"
+                    placeholder="Enter ciphertext to decrypt" style={{color: '#ffffff'}}
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -1116,7 +1116,7 @@ function ConverterTabs() {
                       value={rsaDecryptD}
                       onChange={(e) => setRsaDecryptD(e.target.value)}
                       className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                      placeholder="d"
+                      placeholder="d" style={{color: '#ffffff'}}
                     />
                   </div>
                   <div>
@@ -1125,7 +1125,7 @@ function ConverterTabs() {
                       value={rsaDecryptN}
                       onChange={(e) => setRsaDecryptN(e.target.value)}
                       className="bg-zinc-800 border-zinc-700 text-green-500 font-mono mt-2"
-                      placeholder="n"
+                      placeholder="n" style={{color: '#ffffff'}}
                     />
                   </div>
                 </div>
