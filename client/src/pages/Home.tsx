@@ -763,15 +763,15 @@ function ConverterTabs() {
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800 max-w-4xl mx-auto">
+    <Card className="bg-zinc-900 border-zinc-800 max-w-4xl mx-auto hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300 cursor-pointer">
       <CardContent className="p-6">
         <Tabs defaultValue="caesar" className="w-full">
           <TabsList className="grid grid-cols-5 w-full bg-zinc-800 mb-6 overflow-x-auto">
             <TabsTrigger value="caesar" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Caesar Cipher</TabsTrigger>
-            <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>General Shift</TabsTrigger>
+            <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>General Shift Cipher</TabsTrigger>
             <TabsTrigger value="affine" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Affine Cipher</TabsTrigger>
-            <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Transposition</TabsTrigger>
-            <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>RSA</TabsTrigger>
+            <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Transposition Cipher</TabsTrigger>
+            <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>RSA Cryptography</TabsTrigger>
           </TabsList>
 
           {/* Caesar Tab */}
