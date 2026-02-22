@@ -768,7 +768,7 @@ function ConverterTabs() {
         <Tabs defaultValue="caesar" className="w-full">
           <TabsList className="grid grid-cols-5 w-full bg-zinc-800 mb-6 overflow-x-auto">
             <TabsTrigger value="caesar" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Caesar Cipher</TabsTrigger>
-            <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>General Shift</TabsTrigger>
+            <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#000000', backgroundColor: '#00c951'}}>General Shift</TabsTrigger>
             <TabsTrigger value="affine" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Affine Cipher</TabsTrigger>
             <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>Transposition</TabsTrigger>
             <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap" style={{color: '#ffffff'}}>RSA</TabsTrigger>
