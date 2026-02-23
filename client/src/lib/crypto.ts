@@ -97,69 +97,47 @@ function modInverse(a: number, m: number): number {
 }
 
 // Transposition Cipher (Columnar)
-export function transpositionEncrypt(text: string, key: string): string {
-  const cleanText = text.toUpperCase().replace(/[^A-Z]/g, '');
-  const keyOrder = getKeyOrder(key);
+export function transpositionEncrypt(plaintext: string, key: string): string {
   const numCols = key.length;
-  const numRows = Math.ceil(cleanText.length / numCols);
-  
-  // Create grid
-  const grid: string[][] = [];
-  let index = 0;
-  for (let r = 0; r < numRows; r++) {
-    grid[r] = [];
-    for (let c = 0; c < numCols; c++) {
-      grid[r][c] = index < cleanText.length ? cleanText[index] : 'X';
-      index++;
-    }
+  const numRows = Math.ceil(plaintext.length / numCols);
+  const paddedPlaintext = plaintext.padEnd(numRows * numCols, ' '); // Pad plaintext to fit the grid
+  const grid: string[] = [];
+
+  // Fill the grid row by row
+  for (let i = 0; i < numRows; i++) {
+    grid.push(paddedPlaintext.slice(i * numCols, (i + 1) * numCols));
   }
-  
-  // Read columns in key order
-  let result = '';
-  keyOrder.forEach(col => {
-    for (let r = 0; r < numRows; r++) {
-      result += grid[r][col];
-    }
-  });
-  
-  return result;
+
+  // Sort the key and get the column order
+  const sortedKey = Array.from(key).map((char, index) => ({ char, index })).sort((a, b) => a.char.localeCompare(b.char));
+  const ciphertext = sortedKey.map(({ index }) => grid.map((row: string) => row[index]).join('')).join('');
+
+  return ciphertext.trim(); // Remove any trailing spaces
 }
 
-export function transpositionDecrypt(text: string, key: string): string {
-  const cleanText = text.toUpperCase().replace(/[^A-Z]/g, '');
-  const keyOrder = getKeyOrder(key);
+export function transpositionDecrypt(ciphertext: string, key: string): string {
   const numCols = key.length;
-  const numRows = Math.ceil(cleanText.length / numCols);
-  
-  // Create empty grid
-  const grid: string[][] = Array(numRows).fill(null).map(() => Array(numCols).fill(''));
-  
-  // Fill columns in key order
-  let index = 0;
-  keyOrder.forEach(col => {
-    for (let r = 0; r < numRows; r++) {
-      if (index < cleanText.length) {
-        grid[r][col] = cleanText[index];
-        index++;
+  const numRows = Math.ceil(ciphertext.length / numCols);
+  const paddedCiphertext = ciphertext.padEnd(numRows * numCols, ' '); // Pad ciphertext to fit the grid
+  const grid: string[][] = Array.from({ length: numRows }, () => Array(numCols).fill(' '));
+
+  // Sort the key and get the column order
+  const sortedKey = Array.from(key).map((char, index) => ({ char, index })).sort((a, b) => a.char.localeCompare(b.char));
+  const sortedIndices = sortedKey.map(({ index }) => index);
+
+  // Fill the grid column by column
+  let charIndex = 0;
+  for (let i = 0; i < numCols; i++) {
+    const colIndex = sortedIndices[i];
+    for (let j = 0; j < numRows; j++) {
+      if (charIndex < paddedCiphertext.length) {
+        grid[j][colIndex] = paddedCiphertext[charIndex++];
       }
     }
-  });
-  
-  // Read rows
-  let result = '';
-  for (let r = 0; r < numRows; r++) {
-    for (let c = 0; c < numCols; c++) {
-      result += grid[r][c];
-    }
   }
-  
-  return result;
-}
 
-function getKeyOrder(key: string): number[] {
-  const sorted = key.toUpperCase().split('').map((char, idx) => ({ char, idx }))
-    .sort((a, b) => a.char.localeCompare(b.char));
-  return sorted.map(item => item.idx);
+  // Read the grid row by row to reconstruct the plaintext
+  return grid.map(row => row.join('')).join('').trim();
 }
 
 // RSA Cipher
