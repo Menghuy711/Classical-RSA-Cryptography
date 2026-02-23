@@ -507,6 +507,8 @@ function TopicDetails({ topic }: { topic: string }) {
 }
 
 function ConverterTabs() {
+  const [activeTab, setActiveTab] = useState("caesar");
+  
   // Caesar Cipher State
   const [caesarPlaintext, setCaesarPlaintext] = useState("");
   const [caesarEncrypted, setCaesarEncrypted] = useState("");
@@ -765,13 +767,13 @@ function ConverterTabs() {
   return (
     <Card className="bg-zinc-900 border-zinc-800 max-w-4xl mx-auto hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300 cursor-pointer">
       <CardContent className="p-6">
-        <Tabs defaultValue="caesar" className="w-full">
+        <Tabs defaultValue="caesar" className="w-full" onValueChange={setActiveTab}>
           <TabsList className="grid grid-cols-5 w-full bg-zinc-800 mb-6 overflow-x-auto">
-            <TabsTrigger value="caesar" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>Caesar Cipher</TabsTrigger>
-            <TabsTrigger value="shift" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>General Shift</TabsTrigger>
-            <TabsTrigger value="affine" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>Affine</TabsTrigger>
-            <TabsTrigger value="trans" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>Transposition</TabsTrigger>
-            <TabsTrigger value="rsa" className="font-mono text-xs data-[state=active]:bg-green-500 data-[state=active]:text-zinc-950 whitespace-nowrap hover:bg-green-500 hover:text-zinc-950 transition-colors" style={{color: '#ffffff'}}>RSA</TabsTrigger>
+            <TabsTrigger value="caesar" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "caesar" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>Caesar Cipher</TabsTrigger>
+            <TabsTrigger value="shift" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "shift" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>General Shift</TabsTrigger>
+            <TabsTrigger value="affine" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "affine" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>Affine</TabsTrigger>
+            <TabsTrigger value="trans" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "trans" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>Transposition</TabsTrigger>
+            <TabsTrigger value="rsa" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "rsa" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>RSA</TabsTrigger>
           </TabsList>
 
           {/* Caesar Tab */}
