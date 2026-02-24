@@ -10,6 +10,8 @@ interface Column {
   trail: Array<{ y: number; opacity: number }>;
 }
 
+
+
 export const MatrixRain: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mousePos = useRef({ x: 0, y: 0 });
@@ -164,7 +166,11 @@ export const MatrixRain: React.FC = () => {
       style={{
         background: '#000000',
         mixBlendMode: 'screen',
-        zIndex: -1,
+        zIndex: -10,
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
       }}
     />
   );

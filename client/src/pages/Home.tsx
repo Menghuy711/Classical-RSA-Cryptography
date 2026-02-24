@@ -62,7 +62,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-green-500">
+    <div className="min-h-screen bg-zinc-950 text-green-500 relative">
       {/* Matrix-Style Falling Numeric Animation */}
       <MatrixRain />
 
