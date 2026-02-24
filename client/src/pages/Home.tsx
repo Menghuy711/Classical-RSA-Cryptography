@@ -394,9 +394,7 @@ export default function Home() {
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/bbdKraAUYPhlQuTr.png" alt="ABA Bank" className="w-10 h-10 object-contain" />
               </a>
               <a href="https://github.com/Menghuy711/Classical-RSA-Cryptography" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                <Button variant="ghost" size="icon" className="text-green-500 hover:text-green-400">
-                  <Github size={20} />
-                </Button>
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/dreUYhtwHDdqnEms.png" alt="GitHub" className="w-10 h-10 object-contain" />
               </a>
             </div>
           </div>
