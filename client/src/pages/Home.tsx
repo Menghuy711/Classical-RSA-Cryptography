@@ -774,7 +774,7 @@ function ConverterTabs() {
             setActiveTab(tabs[index]);
           }} />
         </div>
-        <Tabs defaultValue="caesar" className="w-full" onValueChange={setActiveTab}>
+        <Tabs value={activeTab} className="w-full" onValueChange={setActiveTab}>
 
           {/* Caesar Tab */}
           <TabsContent value="caesar" className="space-y-4">
