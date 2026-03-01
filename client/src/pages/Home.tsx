@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SlideTabs } from "@/components/ui/slide-tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -767,14 +768,13 @@ function ConverterTabs() {
   return (
     <Card className="bg-zinc-900 border-zinc-800 max-w-4xl mx-auto hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300 cursor-pointer">
       <CardContent className="p-6">
+        <div className="mb-6 flex justify-center">
+          <SlideTabs onTabChange={(index) => {
+            const tabs = ["caesar", "shift", "affine", "trans", "rsa"];
+            setActiveTab(tabs[index]);
+          }} />
+        </div>
         <Tabs defaultValue="caesar" className="w-full" onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-5 w-full bg-zinc-800 mb-6 overflow-x-auto">
-            <TabsTrigger value="caesar" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "caesar" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>Caesar Cipher</TabsTrigger>
-            <TabsTrigger value="shift" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "shift" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>General Shift</TabsTrigger>
-            <TabsTrigger value="affine" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "affine" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>Affine</TabsTrigger>
-            <TabsTrigger value="trans" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "trans" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>Transposition</TabsTrigger>
-            <TabsTrigger value="rsa" className={`font-mono text-xs whitespace-nowrap transition-all duration-200 rounded-md ${activeTab === "rsa" ? "bg-green-500 text-zinc-950 font-bold" : "text-white hover:bg-green-500 hover:text-zinc-950"}`}>RSA</TabsTrigger>
-          </TabsList>
 
           {/* Caesar Tab */}
           <TabsContent value="caesar" className="space-y-4">
