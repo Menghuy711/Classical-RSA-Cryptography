@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SlideTabs } from "@/components/ui/slide-tabs";
+import { FallingPattern } from "@/components/ui/falling-pattern";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -62,16 +63,20 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-green-500">
-      {/* Binary Background Pattern */}
-      <div 
-        className="fixed inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: `url('https://private-us-east-1.manuscdn.com/sessionFile/02Or6jhLZ3Mg726WnAWeOl/sandbox/Vc2gV8xNqiPcUMDNQlhtW0-img-1_1771404379000_na1fn_aGVyby1iaW5hcnktbWF0cml4.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMDJPcjZqaExaM01nNzI2V25BV2VPbC9zYW5kYm94L1ZjMmdWOHhOcWlQY1VNRE5RbGh0VzAtaW1nLTFfMTc3MTQwNDM3OTAwMF9uYTFmbl9hR1Z5YnkxaWFXNWhjbmt0YldGMGNtbDQucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=M66UvWZM0E9nSzdHjULfCoogR-IQC3lzyKXnVuG0M5kvIVD2NiYSZAMBNoqPPh0UV-hVeTXBZ-KAyFwvn-wi2N5nUBeBDqJSwqooSSLySRq0ypBrcqy6dKB7t9VPPI28yipw3NJq0XAR1H5zFWCISqa-heVcs3J0QopYIyFHqzPBTCCAPnLXuJCvm3VmojXoQYA--KO1iWuvMmw0JWb8L~M1fUrPO-2oZREKdpJ-gZTBxNNBNlhDgxi~X520HsO4ZtO-zqWbAck2im5C9fi7kjObZ52BNhCjcEkODfvQEwXQPe-EFFkovMTb1~Z9sNK6PxqYyNBdd1ssCXN3J2kpzQ__')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
+    <div className="min-h-screen bg-zinc-950 text-green-500 relative">
+      {/* Matrix Code Falling Pattern Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <FallingPattern
+          color="#00ff88"
+          backgroundColor="#09090b"
+          duration={80}
+          blurIntensity="0.5rem"
+          density={2}
+        />
+      </div>
+      
+      {/* Content wrapper with relative positioning */}
+      <div className="relative z-10">
 
       {/* Fixed Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-sm border-b border-zinc-800">
@@ -406,6 +411,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 }
