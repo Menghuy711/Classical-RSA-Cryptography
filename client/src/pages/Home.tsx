@@ -69,8 +69,8 @@ export default function Home() {
         fontSize={20}
         color="#00ff00"
         characters="01"
-        fadeOpacity={0.1}
-        speed={1.0}
+        fadeOpacity={10}
+        speed={0.5}
       />
 
       {/* Fixed Header */}
@@ -218,7 +218,7 @@ export default function Home() {
       </section>
 
       {/* Topics Section */}
-      <section id="topics" className="py-24">
+      <section id="topics" className="py-24 relative z-20">
         <div className="container mx-auto px-6">
           <motion.div
             initial="initial"

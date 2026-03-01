@@ -200,7 +200,7 @@ export function rsaGenerateKeysWithPrimes(p: number, q: number): { publicKey: { 
   const phi = (pBig - 1n) * (qBig - 1n);
 
   // Generate a random public exponent e such that 1 < e < φ(n) and gcd(e, φ(n)) = 1
-  let e: bigint;
+  let e: bigint = 3n;
   let found = false;
   
   // Try common values first
