@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SlideTabs } from "@/components/ui/slide-tabs";
-import { FallingPattern } from "@/components/ui/falling-pattern";
+import MatrixRain from "@/components/ui/matrix-code";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -64,16 +64,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-green-500 relative">
-      {/* Matrix Code Falling Pattern Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <FallingPattern
-          color="#00ff88"
-          backgroundColor="#09090b"
-          duration={80}
-          blurIntensity="0.5rem"
-          density={2}
-        />
-      </div>
+      {/* Matrix Code Background */}
+      <MatrixRain
+        fontSize={20}
+        color="#00ff00"
+        characters="01"
+        fadeOpacity={0.1}
+        speed={1.0}
+      />
       
       {/* Content wrapper with relative positioning */}
       <div className="relative z-10">
