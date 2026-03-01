@@ -63,12 +63,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-green-500 relative">
+    <div className="min-h-screen bg-black text-green-500 relative">
       {/* Dark Matrix Code Falling Pattern Background */}
       <div className="fixed inset-0 z-0 pointer-events-none h-screen w-screen overflow-hidden">
         <FallingPattern
           color="#00ff88"
-          backgroundColor="#09090b"
+          backgroundColor="#000000"
           duration={80}
           blurIntensity="0.5rem"
           density={2}
@@ -79,7 +79,7 @@ export default function Home() {
       <div className="relative z-10">
 
       {/* Fixed Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-sm border-b border-zinc-800 relative">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-zinc-900 relative">
         <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
