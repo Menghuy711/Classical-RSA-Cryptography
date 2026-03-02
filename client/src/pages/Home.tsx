@@ -80,9 +80,9 @@ export default function Home() {
       <div className="relative z-10">
 
       {/* Fixed Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-zinc-900 relative">
-        <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-zinc-900 w-full">
+        <nav className="container mx-auto px-6 py-4 flex items-center justify-between relative w-full">
+          <div className="flex items-center gap-3 flex-shrink-0">
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-10 h-10 rounded-full object-cover" />
             <div className="flex flex-col">
               <span className="text-xl font-mono font-bold text-green-500" style={{color: '#ffffff'}}>សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</span>

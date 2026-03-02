@@ -25,7 +25,7 @@ export default function NavMenu({
       {/* Mobile menu toggle button - only visible on small screens */}
       <button 
         onClick={toggleMenu}
-        className="md:hidden absolute top-6 right-6 z-20 p-2"
+        className="md:hidden relative z-20 p-2"
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
       >
         <div className={`w-6 h-0.5 bg-white mb-1.5 transition-transform duration-300 ${isMenuOpen ? 'transform rotate-45 translate-y-2' : ''}`}></div>
@@ -35,6 +35,7 @@ export default function NavMenu({
       
       {/* Menu container - adapts to screen size */}
       <div className={`
+        absolute md:relative top-full md:top-auto left-0 right-0 md:left-auto md:right-auto
         md:flex md:items-center md:gap-6
         ${isMenuOpen ? 'block' : 'hidden md:block'}
       `}>
