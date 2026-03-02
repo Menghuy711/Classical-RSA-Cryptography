@@ -396,6 +396,7 @@ export default function Home() {
             <div className="flex gap-6 font-mono text-sm text-zinc-400">
               <button onClick={() => scrollToSection("hero")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>Home</button>
               <button onClick={() => scrollToSection("topics")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>Topics</button>
+              <button onClick={() => scrollToSection("members")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>Member</button>
               <button onClick={() => scrollToSection("converter")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>Converter</button>
               <button onClick={() => scrollToSection("about")} className="hover:text-green-500 transition-colors" style={{color: '#ffffff'}}>About</button>
             </div>
