@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SlideTabs } from "@/components/ui/slide-tabs";
 import { FallingPattern } from "@/components/ui/falling-pattern";
+import NavMenu from "@/components/ui/nav-menu";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -88,17 +89,21 @@ export default function Home() {
               <span className="text-xs font-mono text-green-400" style={{color: '#ffffff'}}>ROYAL UNIVERSITY OF PHNOM PENH</span>
             </div>
           </div>
-          <div className="hidden md:flex gap-6 font-mono text-sm">
-            <button onClick={() => scrollToSection("topics")} className="hover:text-green-400 transition-colors" style={{color: '#ffffff'}}>Topics</button>
-            <button onClick={() => scrollToSection("members")} className="hover:text-green-400 transition-colors" style={{color: '#ffffff'}}>Member</button>
-            <button onClick={() => scrollToSection("converter")} className="hover:text-green-400 transition-colors" style={{color: '#ffffff'}}>Converter</button>
-            <button onClick={() => scrollToSection("about")} className="hover:text-green-400 transition-colors" style={{color: '#ffffff'}}>About</button>
-          </div>
+          <NavMenu 
+            items={['Home', 'Topics', 'Member', 'Converter', 'About']}
+            onItemClick={(item) => {
+              if (item === 'Home') scrollToSection('hero');
+              else if (item === 'Topics') scrollToSection('topics');
+              else if (item === 'Member') scrollToSection('members');
+              else if (item === 'Converter') scrollToSection('converter');
+              else if (item === 'About') scrollToSection('about');
+            }}
+          />
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 z-10">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 z-10">
         <div className="container mx-auto px-6 text-center relative">
           <motion.div {...fadeInUp} className="flex flex-col items-center">
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663365465367/UHgYopAfydDtbEgU.png" alt="RUPP Logo" className="w-24 h-24 mb-4 rounded-full object-cover" />
